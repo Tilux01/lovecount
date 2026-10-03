@@ -1,0 +1,63 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "couples": {
+      "$cid": {
+        ".read": "auth != null && root.child('couples').child($cid).child('members').child(auth.uid).exists()",
+        ".write": "auth != null && (root.child('couples').child($cid).child('members').child(auth.uid).exists() || (newData.child('members').child(auth.uid).exists() && newData.child('members').numChildren() <= 2))",
+        "members": {
+          "$uid": {
+            ".validate": "newData.val() === null || newData.hasChildren(['name'])"
+          }
+        },
+        "state": {
+          ".validate": "newData.hasChildren(['rev','updatedAt','updatedBy'])"
+        },
+        "pings": {
+          "$pid": {
+            ".validate": "newData.val() === null || newData.hasChildren(['from','at'])"
+          }
+        }
+      }
+    },
+    "codes": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        ".validate": "newData.isString() && newData.val().length < 200"
+      }
+    },
+    "presence": {
+      "$cid": {
+        ".read": "auth != null && root.child('couples').child($cid).child('members').child(auth.uid).exists()",
+        "$uid": {
+          ".write": "auth != null && (auth.uid === $uid || root.child('couples').child($cid).child('members').child(auth.uid).exists())"
+        }
+      }
+    },
+    "lovecount": {
+      "$room": {
+        ".read": true,
+        ".write": true,
+        "state": {
+          ".validate": "newData.hasChildren(['rev','at','by','state'])"
+        },
+        "chat": {
+          "$mid": {
+            ".validate": "newData.hasChildren(['from','at'])"
+          }
+        },
+        "call": {
+          ".validate": "newData.val() === null || newData.hasChildren(['id','from','state'])"
+        }
+      }
+    }
+  }
+}
