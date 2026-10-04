@@ -1,0 +1,16 @@
+{
+  "name": "LoveCount",
+  "short_name": "LoveCount",
+  "description": "Never miss the important moments of the one you care for most.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF7FF",
+  "theme_color": "#F43F7A",
+  "icons": [
+    { "src": "./assets/icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/favicon.png", "sizes": "64x64", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/android-icon-foreground.png", "sizes": "432x432", "type": "image/png", "purpose": "maskable" }
+  ]
+}

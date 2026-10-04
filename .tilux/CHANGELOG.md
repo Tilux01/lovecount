@@ -30,3 +30,22 @@
   volume_up, mic_off, person, event, info, lock_open, login, shield_lock, switch_account,
   timeline, face) were missing and rendered as literal words across the app.
 - verify.js: ALL CHECKS PASSED. verify_rt.mjs: ALL REALTIME CHECKS PASSED.
+
+## Logo system + honest audit pass
+- New mark: refreshed LoveCount icon (rose gradient squircle, white heart, open count-ring with
+  terminal dot, soft sheen). Cleaner geometry than the old export mark and reads at 16px.
+- Generated the full icon set from one master SVG by rasterising in real Chrome (no image libs):
+  icon 1024, favicon 64, splash 512, android background 512, foreground 432, monochrome 432,
+  logo 512, preview 640. Source of truth: .tilux/logo/logo-master.svg (+ fg/bg/mono variants).
+- Swapped the old inline mark for the new one in all 10 in-app logo slots (shell ICON_URI,
+  notify LOGO, appHtml header icon x9, newscreens x1). Old gradient FF8FB6 remains only as the
+  notification-row token gradient, which is intentional.
+- Measured every screen in a real 390px viewport with Playwright. doc scrollWidth == 390 on all
+  25 screens: no horizontal overflow anywhere. The only elements past the edge are decorative
+  absolutely-positioned gradient blobs inside overflow-hidden cards - clipped by design.
+- Confirmed the report of a "Moments header overflow" was a false positive from an earlier pass.
+- Cycle alert engine exercised with a seeded lastStart: 8 real cycle reminders (cyc-2, cyc-1,
+  cyc-0, cyc-mid, cyc-pms, cyc-late, cyc-watch, cyc-log) with correct absolute whenISO stamps.
+- Notification delivery exercised live: permission granted, 3 alerts delivered and painted into
+  #lc-live-alerts, 6 category toggles present, 0 errors.
+- verify.js ALL CHECKS PASSED. verify_rt.mjs ALL REALTIME CHECKS PASSED (re-run after changes).

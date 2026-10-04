@@ -366,7 +366,11 @@ export const REALTIME_JS = `
     renderChat();
     if (fresh && last && last.from !== whoami()){
       if (window.__ltCurrent === 'chat') scrollBottom();
-      else toast(last.from + ': ' + String(last.img ? 'sent a photo' : (last.text || '')).slice(0, 42), 'chat_bubble');
+      else {
+        var snippet = String(last.img ? 'sent a photo' : (last.text || '')).slice(0, 64);
+        toast(last.from + ': ' + snippet.slice(0, 42), 'chat_bubble');
+        try { if (window.LCNotify) window.LCNotify.show(last.from, snippet || 'New message', 'chat-' + key, 'chat', 'chat'); } catch(e){}
+      }
     }
   }
 
@@ -637,6 +641,7 @@ export const REALTIME_JS = `
     var s = $('rt-in-sub');
     if (s) s.textContent = (v.type === 'video' ? 'Video call' : 'Voice call') + ' is waiting';
     ring(true);
+    try { if (window.LCNotify) window.LCNotify.show(v.from + ' is calling', (v.type === 'video' ? 'Video call' : 'Voice call') + ' - tap to answer', 'call-' + v.id, 'call', 'calls'); } catch(e){}
   }
 
   function startCall(type){
@@ -863,6 +868,11 @@ export const REALTIME_JS = `
     hang: function(){ endCall(true); },
     room: ROOM,
     uid: UID,
+    sub: sub,
+    put: put,
+    get: get,
+    whoami: whoami,
+    other: other,
     get live(){ return live; },
     get callState(){ return CALL.state; },
     get callType(){ return CALL.type; },
