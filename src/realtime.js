@@ -120,6 +120,38 @@ export const REALTIME_JS = `
   var hasFetch = typeof fetch === 'function';
   var hasES = typeof EventSource === 'function';
   var live = !!(BASE && hasFetch);
+
+  var AK = CFG.apiKey || '';
+  var AKEY = 'lc.rt.auth.v1';
+  var AUTH = null;
+  try { AUTH = JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch(e){ AUTH = null; }
+  function saveAuth(a){ AUTH = a; try { if (a) localStorage.setItem(AKEY, JSON.stringify(a)); } catch(e){} }
+  function authToken(){ return (AUTH && AUTH.token && AUTH.exp > Date.now()) ? AUTH.token : ''; }
+  function authParam(){ var t = authToken(); return t ? '?auth=' + encodeURIComponent(t) : ''; }
+  function anonSignIn(){
+    if (!AK || !hasFetch) return Promise.resolve(null);
+    return fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + AK, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ returnSecureToken: true })
+    }).then(function(r){ return r.json(); }).then(function(j){
+      if (!j || !j.idToken) throw new Error('auth:' + ((j && j.error && j.error.message) || 'fail'));
+      var a = { token: j.idToken, refresh: j.refreshToken, uid: j.localId, exp: Date.now() + (parseInt(j.expiresIn, 10) || 3600) * 1000 - 60000 };
+      saveAuth(a); return a;
+    });
+  }
+  function refreshAuth(){
+    if (!AK || !hasFetch) return Promise.resolve(null);
+    if (!AUTH || !AUTH.refresh) return anonSignIn().catch(function(){ return null; });
+    return fetch('https://securetoken.googleapis.com/v1/token?key=' + AK, {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'grant_type=refresh_token&refresh_token=' + encodeURIComponent(AUTH.refresh)
+    }).then(function(r){ return r.json(); }).then(function(j){
+      if (!j || !j.id_token) return anonSignIn();
+      var a = { token: j.id_token, refresh: j.refresh_token || AUTH.refresh, uid: j.user_id || AUTH.uid, exp: Date.now() + (parseInt(j.expires_in, 10) || 3600) * 1000 - 60000 };
+      saveAuth(a); return a;
+    }).catch(function(){ return anonSignIn(); });
+  }
+  function ensureAuth(){ return authToken() ? Promise.resolve(AUTH) : refreshAuth(); }
   var lastRev = 0;
   var pushT = null;
   var msgs = [];
@@ -180,7 +212,13 @@ export const REALTIME_JS = `
     if (!live) return Promise.reject(new Error('offline'));
     var o = { method: method, cache: 'no-store' };
     if (body !== undefined) { o.headers = { 'Content-Type': 'application/json' }; o.body = JSON.stringify(body); }
-    return fetch(BASE + path + '.json', o).then(function(r){
+    function attempt(){
+      return fetch(BASE + path + '.json' + authParam(), o).then(function(r){
+        if (r.status === 401 && AK) { return refreshAuth().then(function(){ return fetch(BASE + path + '.json' + authParam(), o); }); }
+        return r;
+      });
+    }
+    return attempt().then(function(r){
       if (!r.ok) throw new Error('rt-' + r.status);
       if (r.status === 204) return null;
       return r.text().then(function(t){ try { return JSON.parse(t); } catch(e){ return null; } });
@@ -266,7 +304,7 @@ export const REALTIME_JS = `
       return;
     }
     var es = null;
-    try { es = new EventSource(BASE + '.json'); } catch(e){ streamOpen = false; return; }
+    try { es = new EventSource(BASE + '.json' + authParam()); } catch(e){ streamOpen = false; return; }
     es.addEventListener('put', function(e){
       try { var d = JSON.parse(e.data); applyPut(d.path, d.data); }
       catch(err){ console.log('[LCRT] put', err); }
@@ -843,6 +881,7 @@ export const REALTIME_JS = `
     paintTitle();
     renderChat();
     if (!live){ console.log('[LCRT] local only'); return; }
+    ensureAuth().catch(function(){}).then(function(){
     get('/state').then(function(v){
       if (v && v.state) applyRemote(v);
       else pushState(S());
@@ -856,6 +895,7 @@ export const REALTIME_JS = `
     heartbeat();
     setInterval(function(){ paintTyping(); paintPresence(); }, 2500);
     console.log('[LCRT] live', ROOM, UID);
+    });
    } catch(e){ console.log('[LCRT] start failed', e); }
   }
 

@@ -8,6 +8,17 @@ const ROOM = "test-" + Date.now().toString(36) + Math.random().toString(36).slic
 const DB = "https://love-track-c2f0f-default-rtdb.firebaseio.com/lovecount/" + ROOM;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+const API_KEY = "AIzaSyCRRWlIKZ1na9SJNOyO96v5mQ6Rx88SeQU";
+let AUTH_Q = "";
+try {
+  const j = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + API_KEY, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ returnSecureToken: true }),
+  }).then((r) => r.json());
+  if (j && j.idToken) AUTH_Q = "?auth=" + encodeURIComponent(j.idToken);
+} catch (e) {}
+const dbGet = (path) => fetch(DB + path + AUTH_Q).then((r) => r.json());
+const dbDel = () => fetch(DB + ".json" + AUTH_Q, { method: "DELETE" });
+
 function makeSSE(w){
   return class SSE extends w.EventTarget {
     constructor(url){
@@ -177,7 +188,7 @@ const inBox = B.d.getElementById("rt-incoming");
 ok(!!inBox && inBox.className.indexOf("on") !== -1, "her incoming call screen is on");
 const inName = B.d.getElementById("rt-in-name");
 ok(!!inName && inName.textContent === "Israel", "her incoming screen names the caller (" + (inName && inName.textContent) + ")");
-const callNode = await fetch(DB + "/call.json").then((r) => r.json());
+const callNode = await dbGet("/call.json");
 ok(!!callNode && callNode.state === "ringing" && !!callNode.offer, "a real offer was written to the database");
 
 console.log("");
@@ -187,7 +198,7 @@ const declined = await waitFor(() => A.w.LCRT.callState === "idle", 12000);
 ok(declined, "the caller was torn down after the decline");
 const cleared = await waitFor(async () => true, 10);
 await sleep(1500);
-const callAfter = await fetch(DB + "/call.json").then((r) => r.json());
+const callAfter = await dbGet("/call.json");
 ok(callAfter === null, "the call node was purged from the database");
 
 console.log("");
@@ -198,7 +209,7 @@ ok(rang2, "second call reached her with the video flag");
 B.d.getElementById("rt-accept").click();
 const answered = await waitFor(() => A.w.LCRT.callState === "active", 12000);
 ok(answered, "caller flipped to active once the answer came back");
-const answerNode = await fetch(DB + "/call.json").then((r) => r.json());
+const answerNode = await dbGet("/call.json");
 ok(!!answerNode && answerNode.state === "accepted" && answerNode.answer && !!answerNode.answer.sdp, "a real answer sdp was written back to the database");
 ok(B.w.LCRT.callState === "connecting" || B.w.LCRT.callState === "active", "she is holding a live call state (" + B.w.LCRT.callState + ")");
 const callScreen = A.d.getElementById("rt-call");
@@ -213,12 +224,12 @@ const hung = await waitFor(() => B.w.LCRT.callState === "idle", 12000);
 ok(hung, "hanging up on him ended the call on her side too");
 const gone = await waitFor(async () => true, 10);
 await sleep(1500);
-const callGone = await fetch(DB + "/call.json").then((r) => r.json());
+const callGone = await dbGet("/call.json");
 ok(callGone === null, "call node purged after hang up");
 
 console.log("");
 console.log("=== cleanup ===");
-const delRes = await fetch(DB + ".json", { method: "DELETE" });
+const delRes = await dbDel();
 ok(delRes.ok, "test room removed from the backend");
 
 console.log("");

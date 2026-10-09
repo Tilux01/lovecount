@@ -11,7 +11,7 @@
     "couples": {
       "$cid": {
         ".read": "auth != null && root.child('couples').child($cid).child('members').child(auth.uid).exists()",
-        ".write": "auth != null && (root.child('couples').child($cid).child('members').child(auth.uid).exists() || (newData.child('members').child(auth.uid).exists() && newData.child('members').numChildren() <= 2))",
+        ".write": "auth != null && (root.child('couples').child($cid).child('members').child(auth.uid).exists() || (newData.child('members').child(auth.uid).exists()))",
         "members": {
           "$uid": {
             ".validate": "newData.val() === null || newData.hasChildren(['name'])"
@@ -44,8 +44,8 @@
     },
     "lovecount": {
       "$room": {
-        ".read": true,
-        ".write": true,
+        ".read": "auth != null",
+        ".write": "auth != null",
         "state": {
           ".validate": "newData.hasChildren(['rev','at','by','state'])"
         },
