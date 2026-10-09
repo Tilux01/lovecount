@@ -1,24 +1,62 @@
 {
   "expo": {
-    "name": "_expo_build",
-    "slug": "_expo_build",
+    "name": "LoveCount",
+    "slug": "lovecount",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "lovecount",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FAF7FF"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tilux.lovecount"
     },
     "android": {
+      "package": "com.tilux.lovecount",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "permissions": [
+        "CAMERA",
+        "POST_NOTIFICATIONS",
+        "READ_MEDIA_IMAGES",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "VIBRATE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "LoveCount needs your photos to save memories."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "LoveCount uses Face ID to protect Esther's care data."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "lovecount",
+          "color": "#005bb0"
+        }
+      ],
+      "expo-secure-store"
+    ]
   }
 }

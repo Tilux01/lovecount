@@ -39,8 +39,10 @@ export const PHOTOS_JS = String.raw`
       var o = t;
       if (/Hi (Israel|Esther|Tilux)/.test(o))
         o = o.replace(/Hi (Israel|Esther|Tilux)/g, 'Hi ' + meName);
-      if (/Get Started with (Her|Him|Israel|Esther)/.test(o))
-        o = o.replace(/Get Started with (Her|Him|Israel|Esther)/g, 'Get Started with ' + partnerName);
+      if (/Get Started( with (Her|Him|Israel|Esther))?/.test(o)) {
+        var startTxt = (w === 'Esther') ? 'Get Started' : 'Get Started with Esther';
+        o = o.replace(/Get Started( with (Her|Him|Israel|Esther))?/g, startTxt);
+      }
       if (o !== t) n.nodeValue = o;
     }
   }

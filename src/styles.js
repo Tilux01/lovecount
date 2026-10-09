@@ -43,6 +43,11 @@ export const EXTRA_CSS = [
 ".lc-hidden{display:none !important;}",
 "#lc-offline{position:fixed;left:0;right:0;top:0;z-index:99997;background:#171b2b;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;text-align:center;padding:.375rem;transform:translateY(-100%);transition:transform .3s ease;}",
 "#lc-offline.on{transform:translateY(0);}",
+"#lt-footer{position:fixed;left:0;right:0;bottom:calc(0.25rem + env(safe-area-inset-bottom,0px)) !important;z-index:9999;display:flex;justify-content:center;padding:0 0.75rem;pointer-events:none;}",
 "#lt-footer a.lt-tab.lt-on{color:#005bb0;background:rgba(213,227,255,0.4);}",
-"#lt-footer a.lt-tab.lt-on *{color:#005bb0;}"
+"#lt-footer a.lt-tab.lt-on *{color:#005bb0;}",
+".pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}",
+"header.pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}",
+"#screen-role main,#screen-welcome main{display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;min-height:calc(100vh - 4rem) !important;padding-top:max(env(safe-area-inset-top,0px),2.5rem) !important;padding-bottom:max(env(safe-area-inset-bottom,0px),2.5rem) !important;}",
+"#screen-role main > div,#screen-welcome main > div{margin-top:auto !important;margin-bottom:auto !important;width:100% !important;}"
 ].join("\n");

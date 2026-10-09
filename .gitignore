@@ -39,3 +39,20 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# scratch / debug scripts (kept in .tilux/archive)
+_*.mjs
+_*.js
+_*.json
+_*.txt
+_*.log
+.tilux_start.log
+
+# local snapshots & archives
+.tilux/archive/
+.tilux/shots/
+.tilux/push_sub_snapshot.json
+.backup/
+
+# nested push relay (separate repo: lovecount-push)
+push-server/

@@ -194,8 +194,13 @@ Check your Browserslist config to be sure that your targets are set up correctly
 .lc-hidden{display:none !important;}
 #lc-offline{position:fixed;left:0;right:0;top:0;z-index:99997;background:#171b2b;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;text-align:center;padding:.375rem;transform:translateY(-100%);transition:transform .3s ease;}
 #lc-offline.on{transform:translateY(0);}
+#lt-footer{position:fixed;left:0;right:0;bottom:calc(0.25rem + env(safe-area-inset-bottom,0px)) !important;z-index:9999;display:flex;justify-content:center;padding:0 0.75rem;pointer-events:none;}
 #lt-footer a.lt-tab.lt-on{color:#005bb0;background:rgba(213,227,255,0.4);}
-#lt-footer a.lt-tab.lt-on *{color:#005bb0;}</style><style id="lc-rt">#rt-list{display:flex;flex-direction:column;gap:.5rem;padding:.25rem 0 1rem;}
+#lt-footer a.lt-tab.lt-on *{color:#005bb0;}
+.pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}
+header.pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}
+#screen-role main,#screen-welcome main{display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;min-height:calc(100vh - 4rem) !important;padding-top:max(env(safe-area-inset-top,0px),2.5rem) !important;padding-bottom:max(env(safe-area-inset-bottom,0px),2.5rem) !important;}
+#screen-role main > div,#screen-welcome main > div{margin-top:auto !important;margin-bottom:auto !important;width:100% !important;}</style><style id="lc-rt">#rt-list{display:flex;flex-direction:column;gap:.5rem;padding:.25rem 0 1rem;}
 .rt-day{align-self:center;margin:.875rem 0 .25rem;padding:.3125rem .875rem;border-radius:9999px;background:#f3f2ff;color:#6B7280;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
 .rt-row{display:flex;align-items:flex-end;gap:.375rem;max-width:100%;}
 .rt-row-me{justify-content:flex-end;}
@@ -3741,8 +3746,10 @@ Check your Browserslist config to be sure that your targets are set up correctly
       var o = t;
       if (/Hi (Israel|Esther|Tilux)/.test(o))
         o = o.replace(/Hi (Israel|Esther|Tilux)/g, 'Hi ' + meName);
-      if (/Get Started with (Her|Him|Israel|Esther)/.test(o))
-        o = o.replace(/Get Started with (Her|Him|Israel|Esther)/g, 'Get Started with ' + partnerName);
+      if (/Get Started( with (Her|Him|Israel|Esther))?/.test(o)) {
+        var startTxt = (w === 'Esther') ? 'Get Started' : 'Get Started with Esther';
+        o = o.replace(/Get Started( with (Her|Him|Israel|Esther))?/g, startTxt);
+      }
       if (o !== t) n.nodeValue = o;
     }
   }
