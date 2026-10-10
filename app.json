@@ -25,12 +25,13 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "permissions": [
-        "CAMERA",
-        "POST_NOTIFICATIONS",
-        "READ_MEDIA_IMAGES",
-        "USE_BIOMETRIC",
-        "USE_FINGERPRINT",
-        "VIBRATE"
+        "android.permission.CAMERA",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.VIBRATE",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -53,10 +54,16 @@
         "expo-notifications",
         {
           "defaultChannel": "lovecount",
-          "color": "#005bb0"
+          "color": "#F43F5E"
         }
       ],
       "expo-secure-store"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "858f170d-c47f-43db-9e82-ee881e474b2a"
+      }
+    },
+    "owner": "tilux"
   }
 }

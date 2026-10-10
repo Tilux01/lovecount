@@ -6,8 +6,8 @@ export const DATA = {
     version: "1.0.0",
     build: "1.0.0",
     author: "Tilux",
-    androidPackage: "com.tilux.lovecount",   // CONFIRM
-    iosBundleId: "com.tilux.lovecount",      // CONFIRM
+    androidPackage: "com.tilux.lovecount",
+    iosBundleId: "com.tilux.lovecount",
     scheme: "lovecount",
   },
   timezone: "Africa/Lagos",                  // Nigeria, UTC+1
@@ -16,9 +16,9 @@ export const DATA = {
 
   partner: {
     name: "Esther",
-    birthdayMonth: 10,      // October
-    birthdayDay: 19,        // 19th
-    birthYear: 2007,        // CONFIRM - needed for "turning N" and age
+    birthdayMonth: 10,
+    birthdayDay: 7,
+    birthYear: 2007,
   },
 
   relationship: {
@@ -42,7 +42,7 @@ export const DATA = {
 
   seed: {
     events: [
-      { id: "e1", title: "Esther's Birthday", date: "10-19", kind: "birthday" },
+      { id: "e1", title: "Esther's Birthday", date: "10-07", kind: "birthday" },
       { id: "e2", title: "Our Anniversary", date: "08-10", kind: "anniversary" },
     ],
     notes: [
