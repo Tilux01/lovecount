@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LoveCount - every day you have together, counted</title>
-<meta name="description" content="LoveCount keeps your days, notes, moments and care in one private place, synced live between the two of you. Android download.">
+<title>For you, my love - LoveCount</title>
+<meta name="description" content="A private room for the two of us. Every day we have had together, counted live, with the notes, moments and care kept in one place. Made for you, and for nobody else. Android download.">
 <meta name="theme-color" content="#FAF7FF">
-<meta property="og:title" content="LoveCount">
-<meta property="og:description" content="Every day you have together, counted. Private by design, synced live.">
+<meta property="og:title" content="For my baby">
+<meta property="og:description" content="I built you a place to keep us. Every day we have had, counted live.">
 <meta property="og:image" content="landing-assets/logo.png">
 <link rel="icon" href="landing-assets/favicon.png">
 <link rel="apple-touch-icon" href="landing-assets/logo-192.png">
@@ -233,6 +233,33 @@ html{scroll-behavior:auto;}
 .rv{opacity:1;transform:none;transition:none;}
 .sheet .panel,.lb .stagebox{animation:none;}
 }
+.letter{position:relative;max-width:46rem;margin:0 auto;background:var(--card);border:1px solid var(--hair);
+border-radius:var(--r-lg);padding:2rem 1.375rem;box-shadow:var(--sh-card);overflow:hidden;}
+@media(min-width:48rem){.letter{padding:2.75rem 2.5rem;}}
+@media(min-width:64rem){.letter{padding:3.25rem 3.5rem;}}
+.letter::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--pink),var(--rose));}
+.letter .dateline{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;color:var(--subtle);}
+.letter .to{margin-top:.875rem;font-size:20px;line-height:26px;letter-spacing:-.01em;font-weight:700;}
+.letter .paper{display:flex;flex-direction:column;gap:1.0625rem;margin-top:1.5rem;}
+.letter .paper p{font-size:16px;line-height:26px;font-style:italic;color:var(--ink2);}
+.letter .paper .punch{font-style:normal;font-weight:700;color:var(--ink);}
+.letter .sign{margin-top:2rem;padding-top:1.375rem;border-top:1px solid var(--hair);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.letter .sign .who{display:flex;align-items:center;gap:.75rem;}
+.letter .sign b{font-size:20px;line-height:26px;letter-spacing:-.01em;font-weight:700;font-style:italic;color:var(--pink);}
+.letter .sign .sub{font-size:12px;line-height:16px;color:var(--muted);}
+.letter .seal{width:2.75rem;height:2.75rem;border-radius:var(--r-full);display:grid;place-items:center;flex:none;background:rgba(236,72,153,.14);color:var(--pink);box-shadow:var(--sh-brand);}
+.letter .seal svg{width:20px;height:20px;}
+.bd{display:grid;gap:1.5rem;grid-template-columns:1fr;align-items:center;background-color:var(--card);
+background-image:linear-gradient(135deg,rgba(236,72,153,.13),rgba(244,63,94,.05) 55%,rgba(255,255,255,0) 100%);
+border:1px solid rgba(244,63,94,.22);border-radius:var(--r-lg);padding:1.75rem 1.375rem;box-shadow:var(--sh-card);}
+@media(min-width:48rem){.bd{grid-template-columns:1fr auto;gap:2.5rem;padding:2.25rem 2.5rem;}}
+.bd .txt{display:flex;flex-direction:column;gap:.75rem;align-items:flex-start;}
+.bd-count{display:flex;align-items:baseline;gap:.75rem;}
+.bd-n{font-size:36px;line-height:44px;letter-spacing:-.03em;font-weight:800;color:var(--rose);}
+@media(min-width:64rem){.bd-n{font-size:62px;line-height:1.03;letter-spacing:-.035em;}}
+.bd-w{display:flex;flex-direction:column;gap:.125rem;}
+.bd-w b{font-size:17px;line-height:22px;font-weight:700;color:var(--ink);}
+.bd-w i{font-style:normal;font-size:12px;line-height:16px;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -244,13 +271,13 @@ html{scroll-behavior:auto;}
 <span>LoveCount</span>
 </a>
 <div class="links">
-<a href="#features">Features</a>
-<a href="#care">Care</a>
+<a href="#letter">The letter</a>
+<a href="#birthday">Your birthday</a>
+<a href="#features">Inside</a>
 <a href="#screens">Screens</a>
-<a href="#live">Live sync</a>
-<a href="#private">Privacy</a>
+<a href="#private">Us two</a>
 </div>
-<a class="btn btn-brand btn-sm cta" href="#download">Get the app</a>
+<a class="btn btn-brand btn-sm cta" href="#download">Install it</a>
 <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
 </button>
@@ -261,12 +288,14 @@ html{scroll-behavior:auto;}
 <div class="scrim" data-close></div>
 <div class="panel">
 <div class="grab"></div>
-<a href="#features" data-close>Features</a>
+<a href="#letter" data-close>The letter</a>
+<a href="#birthday" data-close>Your birthday</a>
+<a href="#features" data-close>Inside</a>
 <a href="#care" data-close>Care</a>
 <a href="#screens" data-close>Screens</a>
 <a href="#live" data-close>Live sync</a>
-<a href="#private" data-close>Privacy</a>
-<a href="#download" data-close style="background:linear-gradient(to right,#EC4899,#F43F5E);color:#fff;justify-content:center;">Get the app</a>
+<a href="#private" data-close>Just us two</a>
+<a href="#download" data-close style="background:linear-gradient(to right,#EC4899,#F43F5E);color:#fff;justify-content:center;">Install it, my love</a>
 </div>
 </div>
 
@@ -276,20 +305,20 @@ html{scroll-behavior:auto;}
 <div class="wrap">
 <div class="grid">
 <div class="copy rv">
-<span class="badge"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>One room, two people, nobody else</span>
-<h1>Every day you have together, counted.</h1>
-<p class="lede">LoveCount keeps your days, notes, moments and care in one quiet place that stays in sync between the two of you. No feed to scroll, no strangers, no ads chasing you.</p>
+<span class="badge"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>For my baby, from me</span>
+<h1>I built you a place to keep us.</h1>
+<p class="lede">Every day we have had together, every note I wanted to leave you, and every day still coming, kept in one room that only the two of us can open.</p>
 <div class="cta-row">
 <a class="btn btn-brand" href="#download" data-apk>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
-Download for Android
+Install it, my sweetheart
 </a>
-<a class="btn btn-ghost" href="#features">See what is inside</a>
+<a class="btn btn-ghost" href="#letter">Read what I wrote</a>
 </div>
 <div class="trust">
-<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Free, no account</span>
-<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Private room by default</span>
-<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Synced live</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Only the two of us</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>No ads, no tracking</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Stays in sync live</span>
 </div>
 </div>
 <div class="stage rv">
@@ -302,7 +331,7 @@ Download for Android
 </div>
 <div class="chip chip-b">
 <svg viewBox="0 0 24 24" fill="none" stroke="#005BB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
-<div><b>Next big day</b><span id="chipBday">in 0 days</span></div>
+<div><b>Your birthday</b><span id="chipBday">in 0 days</span></div>
 </div>
 <div class="chip chip-c">
 <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -312,14 +341,56 @@ Download for Android
 </div>
 </div>
 </div>
+<section id="letter">
+<div class="wrap">
+<div class="letter rv">
+<span class="dateline">A note before you scroll</span>
+<h2 class="to">My baby,</h2>
+<div class="paper">
+<p>My love, I am not very good at saying things out loud, so I made you this instead. Then I built an entire page just to explain it, which is somehow even worse. Bear with me anyway.</p>
+<p>There is a number at the top of the app that only ever goes one way. Every morning it is one higher than it was the night before. It has been counting since the tenth of August, and it has not missed a single day with you yet.</p>
+<p>Then there is your birthday, sweetheart. The nineteenth of October, and it is almost here again. The app is already counting down to it, because I refuse to be the one who forgets your day.</p>
+<p>After that are the quiet parts. A place to leave you a note when I think of something at two in the morning and you are asleep. A place for the photos we take and never look at again. A place for the days you are not feeling like yourself, so that I stop guessing and just <span class="punch">know</span>, and you never have to explain it to me twice.</p>
+<p>It is only ever the two of us in here. No feed, no strangers, nothing asking for your data so it can sell you something. Nobody gets in here but you and me.</p>
+<p>It is not a big thing. It is just mine, and I made every part of it for you, my baby.</p>
+</div>
+<div class="sign">
+<div class="who">
+<span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+<div>
+<b>Yours, Israel</b>
+<p class="sub" style="margin:.125rem 0 0">Only ever for you</p>
+</div>
+</div>
+<a class="btn btn-brand btn-sm" href="#download" data-apk><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Install it, honey</a>
+</div>
+</div>
+</div>
+</section>
 
-<section style="padding-top:2.5rem;">
+<section id="birthday">
+<div class="wrap rv">
+<div class="bd">
+<div class="txt">
+<span class="eyebrow">Your birthday</span>
+<h2>Nineteen October, and I am counting.</h2>
+<p class="lede">Not a reminder sitting on my phone. A number in the app I built for you, going down every single day until it is your day again.</p>
+</div>
+<div class="bd-count">
+<span class="bd-n" id="bdNum">0</span>
+<span class="bd-w"><b id="bdWord">days</b><i id="bdWhen">19 October</i></span>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0;">
 <div class="wrap rv">
 <div class="stats">
 <div class="stat"><span class="n" id="sDays">0</span><span class="k">Days together</span></div>
-<div class="stat"><span class="n" id="sBday">0</span><span class="k">Days to her birthday</span></div>
-<div class="stat"><span class="n">4</span><span class="k">Trackers built in</span></div>
-<div class="stat"><span class="n">0</span><span class="k">Ads and trackers</span></div>
+<div class="stat"><span class="n">6</span><span class="k">Things inside</span></div>
+<div class="stat"><span class="n">2</span><span class="k">People in the room</span></div>
+<div class="stat"><span class="n">0</span><span class="k">Ads or trackers, ever</span></div>
 </div>
 </div>
 </section>
@@ -328,39 +399,39 @@ Download for Android
 <div class="wrap">
 <div class="head rv">
 <span class="eyebrow">What is inside</span>
-<h2>Everything the two of you keep track of, in one place</h2>
-<p class="body">Six things that actually get used, built around how the two of you already live, not around an engagement metric.</p>
+<h2>Six things, all of them for you</h2>
+<p class="body">Nothing here is filler. Each one is something I wanted us to have and could not find in a single place anywhere else.</p>
 </div>
 <div class="cards">
 <div class="card rv">
 <div class="ico" style="background:rgba(236,72,153,.14);color:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/><path d="M12 14v3M10.5 15.5h3"/></svg></div>
-<h3>Countdowns that matter</h3>
-<p>Her birthday, your anniversary, and any day you decide is worth counting. The home screen leads with the numbers, not a timeline of nothing.</p>
+<h3>The days that matter</h3>
+<p>Our start date, your birthday, and any other day we decide is worth counting. The home screen opens on the numbers instead of a timeline of nothing.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(0,136,255,.14);color:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 9h7M8 13h7M8 17h4"/></svg></div>
-<h3>Notes that land softly</h3>
-<p>Leave a note with a mood attached. She can read it whenever, and the ones that hit get hearts back. It is the good part of a text thread with none of the noise.</p>
+<h3>Notes that wait for you</h3>
+<p>Leave a note with a mood attached and read it whenever you like. The ones that land get hearts back. It is the good part of a text thread, without the noise.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(139,92,246,.14);color:var(--purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg></div>
 <h3>Moments, not a photo dump</h3>
-<p>Drop the small things in as they happen. Photos get their own quiet gallery instead of disappearing into a camera roll you never open again.</p>
+<p>The small things go in as they happen, into their own quiet gallery, instead of vanishing into a camera roll neither of us ever opens again.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(244,63,94,.14);color:var(--rose)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-6.5-4-6.5-8.5A4.5 4.5 0 0 1 12 8.6a4.5 4.5 0 0 1 6.5 2.9C18.5 16 12 20 12 20z"/><path d="M12 8.6V4"/></svg></div>
 <h3>Cycle and care, handled with respect</h3>
-<p>Cycle tracking, mood, symptoms and the care log, all built for one person to actually use and the other to simply be aware of. Never clinical, never a lecture.</p>
+<p>Cycle, mood, symptoms and the care log, built for you to actually use and for me to simply be aware of. Never clinical, never a lecture.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(113,42,226,.14);color:var(--sec)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z"/></svg></div>
 <h3>Chat that arrives instantly</h3>
-<p>One live stream carries the room. Messages, typing, presence and delivery all ride the same connection, so it feels immediate instead of refreshed.</p>
+<p>One live stream carries the whole room. Messages, typing and presence all ride the same connection, so it feels immediate instead of refreshed.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(16,185,129,.14);color:var(--emerald)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h2l1.4 4-2 1.2a12 12 0 0 0 6.9 6.9l1.2-2 4 1.4v2A2.5 2.5 0 0 1 17.5 20C10.6 20 4 13.4 4 6.5z"/></svg></div>
 <h3>Calls, the real kind</h3>
-<p>Voice and video calling that runs directly between your two devices. No dialling a platform, no joining a lobby, no account to hand over first.</p>
+<p>Voice and video running straight between our two phones. No dialling into a platform, no lobby, no account to hand over first.</p>
 </div>
 </div>
 </div>
@@ -371,20 +442,20 @@ Download for Android
 <div class="split">
 <div class="txt rv">
 <span class="eyebrow">Care, done properly</span>
-<h2>One person logs it. The other just knows.</h2>
-<p class="lede">The care section reads the room. It greets her as you, and she gets the full set of controls. He gets the picture, plus exactly one way to contribute.</p>
+<h2>You write it down. I just learn it.</h2>
+<p class="lede">The care section knows whose phone it is on. You get every control there is. I get the picture, and exactly one way to help.</p>
 <div class="rules">
 <div class="rule">
 <div class="dot" style="background:rgba(244,63,94,.14);color:var(--rose)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-<div><h4>Esther: full logging</h4><p>Mood, flow, symptoms, period start and the care log, all hers to write.</p></div>
+<div><h4>Yours, all of it</h4><p>Mood, flow, symptoms, period start and the care log are yours to write. I cannot edit a single line.</p></div>
 </div>
 <div class="rule">
 <div class="dot" style="background:rgba(0,91,176,.14);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
-<div><h4>Israel: view only</h4><p>He reads the log and the cycle. Nothing is editable from his side, and nothing is hidden from him either.</p></div>
+<div><h4>Mine to read</h4><p>I can see the log and the cycle. Nothing is hidden from me, and nothing is mine to change either.</p></div>
 </div>
 <div class="rule">
 <div class="dot" style="background:rgba(236,72,153,.14);color:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l3.5-1 10-10a2.5 2.5 0 0 0-3.5-3.5l-10 10L4 20z"/><path d="M13.5 6.5L17 10"/></svg></div>
-<div><h4>And one thing he can write</h4><p>Write a note. It lands in her feed signed from him. That is the only pen he gets, on purpose.</p></div>
+<div><h4>The one pen I get</h4><p>I can write you a note, and it lands in your feed signed from me. That is the whole of it, on purpose.</p></div>
 </div>
 </div>
 </div>
@@ -400,9 +471,9 @@ Download for Android
 <section id="screens" style="padding-bottom:2rem;">
 <div class="wrap">
 <div class="head rv">
-<span class="eyebrow">Actual screens</span>
-<h2>No mockups, no lorem ipsum</h2>
-<p class="body">These are the real screens, captured from the build you are about to install. Tap any one to see it full size.</p>
+<span class="eyebrow">The real screens</span>
+<h2>No mockups, no placeholders</h2>
+<p class="body">Every screen below is the build you are about to install. Tap any one to see it properly, full size.</p>
 </div>
 </div>
 <div class="rail rv" id="rail">
@@ -416,7 +487,7 @@ Download for Android
 <figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/call.webp" data-title="Calling"><img src="landing-assets/call-1x.webp" alt="Incoming call screen" loading="lazy"></div></div><figcaption class="cap">Calling</figcaption></figure>
 <figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/profile.webp" data-title="Profile"><img src="landing-assets/profile-1x.webp" alt="Profile screen" loading="lazy"></div></div><figcaption class="cap">Profile</figcaption></figure>
 </div>
-<div class="wrap rv"><p class="rail-hint">Swipe or scroll sideways for more</p></div>
+<div class="wrap rv"><p class="rail-hint">Swipe or scroll sideways for the rest</p></div>
 </section>
 
 <section id="live">
@@ -425,12 +496,12 @@ Download for Android
 <div class="split">
 <div class="txt">
 <span class="eyebrow" style="color:#F9A8D4">Live sync</span>
-<h2>Two phones, one room, no refresh button</h2>
-<p class="lede" style="color:rgba(255,255,255,.72)">Every change travels over a single live stream that the whole app shares. Type a message and it is there. Start a call and the other phone rings.</p>
+<h2>Two phones, one room, nothing to refresh</h2>
+<p class="lede" style="color:rgba(255,255,255,.72)">Everything travels over one live stream the whole app shares. Type something and it is already there. Start a call and your phone rings where it sits.</p>
 <div class="rules" style="gap:.5rem">
 <div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Messages, typing and presence on one connection</div>
-<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Voice and video call straight between devices</div>
-<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Keeps working if the signal drops, then catches up</div>
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Voice and video straight between our phones</div>
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Keeps working when the signal drops, then catches up</div>
 <div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Push alerts when the app is closed</div>
 </div>
 </div>
@@ -447,23 +518,23 @@ Download for Android
 <div class="wrap">
 <div class="head rv">
 <span class="eyebrow">Private by design</span>
-<h2>Your relationship is not a data source</h2>
+<h2>What happens in here stays in here</h2>
 </div>
 <div class="cards">
 <div class="card rv">
 <div class="ico" style="background:rgba(16,185,129,.14);color:var(--emerald)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg></div>
-<h3>Two people in the room</h3>
-<p>The whole app lives inside one private room with exactly two members. There is no discovery, no suggested people, and no way to stumble into it.</p>
+<h3>Just the two of us</h3>
+<p>The whole app sits inside one room with exactly two members. No discovery, no suggested people, no way for anyone else to wander in.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(0,91,176,.14);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></div>
 <h3>Nothing is sold</h3>
-<p>No analytics pipeline, no ad networks, no third party reading your notes to work out what to sell you next. The app has no tracking to switch off.</p>
+<p>No analytics pipeline, no ad networks, no third party reading our notes to work out what to sell us next. There is no tracking here to switch off.</p>
 </div>
 <div class="card rv">
 <div class="ico" style="background:rgba(251,191,36,.18);color:#B45309"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M6 7l1 12.5A1.5 1.5 0 0 0 8.5 21h7a1.5 1.5 0 0 0 1.5-1.5L18 7"/></svg></div>
-<h3>Yours to delete</h3>
-<p>Everything can be cleared from the app. When you delete something it is gone from the room, not quietly archived on a server you cannot see.</p>
+<h3>Ours to delete</h3>
+<p>Everything can be cleared from the app. When something is deleted it is gone from the room, not quietly archived on a server we cannot see.</p>
 </div>
 </div>
 </div>
@@ -473,8 +544,8 @@ Download for Android
 <div class="wrap rv">
 <div class="dl">
 <span class="eyebrow" style="color:rgba(255,255,255,.85)">Get LoveCount</span>
-<h2 style="margin-top:.5rem">Install it on both phones tonight</h2>
-<p class="lede" style="color:rgba(255,255,255,.9);margin-top:.75rem;max-width:34rem;margin-left:auto;margin-right:auto">One download, one room, and every day from here is counted for you.</p>
+<h2 style="margin-top:.5rem">Put it on your phone tonight</h2>
+<p class="lede" style="color:rgba(255,255,255,.9);margin-top:.75rem;max-width:34rem;margin-left:auto;margin-right:auto">One download, one room, and from tomorrow morning the number goes up for both of us.</p>
 <div style="margin-top:1.5rem">
 <a class="btn" href="https://github.com/Tilux01/lovecount/releases/download/v1.0.0/LoveCount-1.0.0.apk" data-apk download>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
@@ -487,7 +558,7 @@ Download the Android app
 <span>Version 1.0.0</span>
 <span>com.tilux.lovecount</span>
 </div>
-<p class="note">Android only for now, an iOS build is not published yet. If your phone warns about installing from outside the Play Store, that is normal for a direct install, allow it once.</p>
+<p class="note">Android only for now, there is no iOS build published yet. If your phone warns you about installing from outside the Play Store, that is normal for a direct install, allow it once.</p>
 </div>
 </div>
 </section>
@@ -497,25 +568,25 @@ Download the Android app
 <div class="cols">
 <div>
 <a class="brand" href="#top"><img src="landing-assets/logo.svg" alt="LoveCount" width="32" height="32"><span>LoveCount</span></a>
-<p style="margin-top:.75rem;max-width:22rem">A private space for two people to keep their days, notes, moments and care in one place.</p>
+<p style="margin-top:.75rem;max-width:22rem">A private room for two people to keep their days, notes, moments and care in one place.</p>
 </div>
 <div>
 <h4>Page</h4>
-<a class="fl" href="#features">Features</a>
-<a class="fl" href="#care">Care</a>
+<a class="fl" href="#letter">The letter</a>
+<a class="fl" href="#birthday">Your birthday</a>
+<a class="fl" href="#features">Inside</a>
 <a class="fl" href="#screens">Screens</a>
-<a class="fl" href="#live">Live sync</a>
 </div>
 <div>
 <h4>Get it</h4>
 <a class="fl" href="#download">Download for Android</a>
 <a class="fl" href="https://github.com/Tilux01/lovecount" target="_blank" rel="noopener">Source on GitHub</a>
-<a class="fl" href="#private">Privacy</a>
+<a class="fl" href="#private">Just us two</a>
 </div>
 </div>
 <div class="base">
 <p>LoveCount 1.0.0</p>
-<p>Built by Tilux</p>
+<p>Made by Israel, for my baby</p>
 </div>
 </div>
 </footer>
@@ -530,33 +601,37 @@ Download the Android app
 
 <script>
 (function(){
+var BLANK='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 var START = new Date(2025,7,10,0,0,0);
-var BDAY = {m:9,d:7};
+var BDAY = {m:9,d:19};
 var day = 86400000;
+var MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 function midnight(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
 function daysTogether(){return Math.max(0,Math.floor((midnight(new Date())-midnight(START))/day));}
-function daysToBirthday(){
+function nextBday(){
   var n=midnight(new Date()),y=n.getFullYear();
   var t=new Date(y,BDAY.m,BDAY.d);
   if(t<n){t=new Date(y+1,BDAY.m,BDAY.d);}
-  return Math.round((t-n)/day);
+  return t;
 }
+function daysToBirthday(){return Math.round((nextBday()-midnight(new Date()))/day);}
 function paint(){
-  var a=daysTogether(),b=daysToBirthday();
+  var a=daysTogether(),b=daysToBirthday(),t=nextBday();
   var set=function(id,v){var e=document.getElementById(id);if(e){e.textContent=v;}};
   set('sDays',a.toLocaleString());
-  set('sBday',b.toLocaleString());
   set('chipDays',a.toLocaleString()+' days');
-  set('chipBday','in '+b.toLocaleString()+' days');
+  set('chipBday',b===0?'today':'in '+b.toLocaleString()+(b===1?' day':' days'));
+  set('bdNum',b===0?'Today':b.toLocaleString());
+  set('bdWord',b===0?'is the day':'days to go');
+  set('bdWhen',DOW[t.getDay()]+', '+t.getDate()+' '+MON[t.getMonth()]+' '+t.getFullYear());
 }
 paint();
 setInterval(paint,60000);
-
 var dock=document.getElementById('dock');
 var onScroll=function(){if(window.scrollY>24){dock.classList.add('stuck');}else{dock.classList.remove('stuck');}};
 window.addEventListener('scroll',onScroll,{passive:true});
 onScroll();
-
 var sheet=document.getElementById('sheet');
 var burger=document.getElementById('burger');
 function closeSheet(){sheet.classList.remove('on');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
@@ -595,7 +670,7 @@ function openLb(src,title){
 }
 function closeLb(){
   lb.classList.remove('on');
-  lbImg.src='';
+  lbImg.src=BLANK;
   document.body.style.overflow='';
   if(lastFocus){lastFocus.focus();}
 }
