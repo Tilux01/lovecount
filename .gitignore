@@ -56,3 +56,6 @@ _*.log
 
 # nested push relay (separate repo: lovecount-push)
 push-server/
+
+lovecount.apk
+.tilux/landing/
