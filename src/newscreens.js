@@ -34,7 +34,7 @@ export const NEW_SCREENS = [
     `<div class="flex flex-col gap-space-md">${back("events", "New Event", "event")}
       ${card(`<span class="font-headline-md text-headline-md text-on-surface">Create an event</span>
         <div class="lc-field"><label>Title</label><input class="lc-input" id="pg-e-title" placeholder="e.g. Our Anniversary"/></div>
-        <div class="lc-field"><label>Date (MM-DD)</label><input class="lc-input" id="pg-e-date" placeholder="08-19"/></div>
+        <div class="lc-field"><label>Date (MM-DD)</label><input class="lc-input" id="pg-e-date" placeholder="08-10"/></div>
         <div class="lc-field"><label>Type</label><select class="lc-select" id="pg-e-kind">
           <option value="birthday">Birthday</option><option value="anniversary">Anniversary</option>
           <option value="date">Date night</option><option value="celebration">Celebration</option>
@@ -352,12 +352,12 @@ export const PAGE_JS = `
   function renderProfile(){
     var box=$('#profile-stats'); if(!box) return;
     var S=st(); if(!S) return;
-    var start=new Date('2025-08-19T00:00:00');
+    var start=new Date('2025-08-10T00:00:00');
     var days=Math.round((new Date()-start)/86400000); if(days<0) days=0;
     function stat(icon, val, label, tone){
       return '<div class="flex items-center justify-between p-3.5 px-4 rounded-2xl bg-card-surface shadow-[0_8px_24px_-4px_rgba(30,34,51,0.05)]"><div class="flex items-center gap-3.5 min-w-0"><div class="flex items-center justify-center w-11 h-11 rounded-2xl bg-'+tone+'/15 text-'+tone+' shrink-0"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings:\\'FILL\\' 1;">'+icon+'</span></div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate">'+val+'</span><span class="font-body-sm text-body-sm text-text-muted truncate">'+label+'</span></div></div></div>';
     }
-    box.innerHTML = stat('favorite', days+' days', 'Together since 19 August 2025', 'bubble-rose')
+    box.innerHTML = stat('favorite', days+' days', 'Together since 10 August 2025', 'bubble-rose')
       + stat('cake', '19 October', 'Esther\u2019s birthday', 'bubble-pink')
       + stat('chat_bubble', S.notes.length+' notes', 'Love notes written', 'bubble-purple')
       + stat('photo_library', S.moments.length+' memories', 'Saved moments', 'bubble-blue')

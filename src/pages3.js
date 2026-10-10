@@ -58,7 +58,7 @@ export const MORE_JS = `
   function daysToBday(){ return diff(today(),bdayNext()); }
   function turningAge(){ return bdayNext().getFullYear()-(partner().birthYear||2007); }
   function currentAge(){ return Math.max(0,turningAge()-1); }
-  function startDate(){ return new Date(((D.relationship&&D.relationship.startISO)||'2025-08-19')+'T00:00:00'); }
+  function startDate(){ return new Date(((D.relationship&&D.relationship.startISO)||'2025-08-10')+'T00:00:00'); }
   function daysTogether(){ var n=diff(startDate(),today()); return n>0?n:0; }
   function ordinal(n){ n=Number(n); var s=['th','st','nd','rd'],v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
   function parseMD(md){ var p=String(md||'').split('-'); return {m:parseInt(p[0],10)||1,d:parseInt(p[1],10)||1}; }
@@ -170,7 +170,7 @@ export const MORE_JS = `
     $$('span', root).forEach(function(el){
       var t=(el.textContent||'').trim();
       if(t==='Tilux & Sarah' || t==='Tilux & Girlfriend' || t==='Israel & Esther') el.textContent=me()+' & '+partner().name;
-      else if(t.indexOf('Together 842 days')===0) el.textContent='Together '+daysTogether()+' days \\u2022 Since 19 August 2025';
+      else if(t.indexOf('Together 842 days')===0) el.textContent='Together '+daysTogether()+' days \\u2022 Since 10 August 2025';
       else if(t==='Loverly Pastel Play theme') el.textContent=(S.settings.appearance||'Loverly Pastel Play')+' theme';
       else if(t==='Every morning at 8:30 AM') el.textContent='Every morning at '+(S.settings.reminder||'08:30');
     });
