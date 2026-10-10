@@ -163,7 +163,7 @@ Check your Browserslist config to be sure that your targets are set up correctly
 .lc-row:active{transform:scale(.99);}
 .lc-row .material-symbols-outlined{font-size:20px;}
 .lc-row.danger{background:#ffdad6;color:#93000a;}
-#lc-toast{position:fixed;top:calc(5rem + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-8px);z-index:100000;display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:9999px;background:#171b2b;color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:600;box-shadow:0 12px 28px -6px rgba(30,34,51,.4);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;max-width:90vw;}
+#lc-toast{position:fixed;top:calc(5rem + var(--lc-inset-top));left:50%;transform:translate(-50%,-8px);z-index:100000;display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:9999px;background:#171b2b;color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:600;box-shadow:0 12px 28px -6px rgba(30,34,51,.4);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;max-width:90vw;}
 #lc-toast.on{opacity:1;transform:translate(-50%,0);}
 #lc-toast .material-symbols-outlined{font-size:16px;color:#F43F5E;}
 .lc-field{display:flex;flex-direction:column;gap:.375rem;margin-bottom:.75rem;}
@@ -197,8 +197,10 @@ Check your Browserslist config to be sure that your targets are set up correctly
 #lt-footer{position:fixed;left:0;right:0;bottom:calc(0.25rem + env(safe-area-inset-bottom,0px)) !important;z-index:9999;display:flex;justify-content:center;padding:0 0.75rem;pointer-events:none;}
 #lt-footer a.lt-tab.lt-on{color:#005bb0;background:rgba(213,227,255,0.4);}
 #lt-footer a.lt-tab.lt-on *{color:#005bb0;}
-.pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}
-header.pt-safe{padding-top:max(env(safe-area-inset-top,0px), 1.5rem) !important;}
+:root{--lc-inset-top:max(env(safe-area-inset-top,0px), 1.5rem);}
+.pt-safe{padding-top:var(--lc-inset-top) !important;}
+header.pt-safe{padding-top:var(--lc-inset-top) !important;}
+main.pt-20{padding-top:calc(5rem + var(--lc-inset-top)) !important;}
 #screen-role main,#screen-welcome main{display:flex !important;flex-direction:column !important;justify-content:center !important;align-items:center !important;min-height:calc(100vh - 4rem) !important;padding-top:max(env(safe-area-inset-top,0px),2.5rem) !important;padding-bottom:max(env(safe-area-inset-bottom,0px),2.5rem) !important;}
 #screen-role main > div,#screen-welcome main > div{margin-top:auto !important;margin-bottom:auto !important;width:100% !important;}</style><style id="lc-rt">#rt-list{display:flex;flex-direction:column;gap:.5rem;padding:.25rem 0 1rem;}
 .rt-day{align-self:center;margin:.875rem 0 .25rem;padding:.3125rem .875rem;border-radius:9999px;background:#f3f2ff;color:#6B7280;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}

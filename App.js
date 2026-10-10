@@ -1,7 +1,7 @@
 
 import { useRef, useCallback, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Share, Linking, Platform } from "react-native";
+import { StyleSheet, View, Share, Linking, Platform, StatusBar as NativeStatusBar } from "react-native";
 import { WebView } from "react-native-webview";
 import { APP_HTML } from "./src/shell";
 
@@ -10,6 +10,14 @@ import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import * as Notifications from "expo-notifications";
 import * as Haptics from "expo-haptics";
+
+const TOP_INSET = Platform.OS === "android" ? Math.round(NativeStatusBar.currentHeight || 24) : 0;
+
+const BOOT_JS =
+  "var s=document.documentElement.style;" +
+  "s.background='#FAF7FF';" +
+  (TOP_INSET > 0 ? "s.setProperty('--lc-inset-top','" + TOP_INSET + "px');" : "") +
+  "true;";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -216,7 +224,7 @@ export default function App() {
         source={{ html: APP_HTML }}
         style={styles.web}
         containerStyle={styles.web}
-        injectedJavaScriptBeforeContentLoaded={"document.documentElement.style.background='#FAF7FF';true;"}
+        injectedJavaScriptBeforeContentLoaded={BOOT_JS}
         onMessage={onMessage}
         javaScriptEnabled
         domStorageEnabled
