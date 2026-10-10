@@ -48,7 +48,7 @@ export const NEW_SCREENS = [
     `<div class="flex flex-col gap-space-md">${back("moments", "New Memory", "photo_library")}
       ${card(`<span class="font-headline-md text-headline-md text-on-surface">Capture a moment</span>
         <div class="lc-field"><label>Title</label><input class="lc-input" id="pg-m-title" placeholder="e.g. Beach evening"/></div>
-        <div class="lc-field"><label>Story</label><textarea class="lc-area" id="pg-m-body" rows="3" placeholder="What made her smile?"></textarea></div>
+        <div class="lc-field"><label>Story</label><textarea class="lc-area" id="pg-m-body" rows="3" placeholder="What made the moment special?"></textarea></div>
         <div class="lc-field"><label>Place</label><input class="lc-input" id="pg-m-place" placeholder="Lagos"/></div>
         <button class="lc-btn ghost" id="pg-m-photo" type="button"><span class="material-symbols-outlined">photo_camera</span>Take or choose a photo</button>
         <div id="pg-m-thumb"></div>`)}

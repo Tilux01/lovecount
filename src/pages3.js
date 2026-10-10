@@ -13,12 +13,12 @@ export const MORE_SCREENS = `
 <main class="flex-1 flex flex-col relative w-full pt-20 pb-28 px-margin-mobile bg-transparent"><div class="flex flex-col gap-space-md">
 <div class="flex items-center justify-between px-space-xs pt-1"><button data-goto="care" aria-label="Go back" class="flex items-center justify-center w-11 h-11 rounded-full bg-white text-on-surface shadow-[0_4px_16px_-2px_rgba(30,34,51,0.06)] active:scale-95 transition-transform" type="button"><span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span></button><div class="flex items-center gap-1.5 px-space-md py-1 bg-subtle-lavender rounded-full shadow-sm"><span class="material-symbols-outlined text-bubble-rose text-[16px]" style="font-variation-settings:'FILL' 1;">spa</span><span class="font-label-md text-label-md text-secondary">New Entry</span></div><div class="w-11"></div></div>
 <div class="p-space-lg rounded-3xl bg-card-surface shadow-[0_8px_24px_-4px_rgba(30,34,51,0.05)] flex flex-col gap-space-sm">
-<span class="font-headline-md text-headline-md text-on-surface">How is she feeling?</span>
+<span class="font-headline-md text-headline-md text-on-surface" id="cl-title">How are you feeling?</span>
 <div class="lc-field"><label>Date</label><input class="lc-input" id="cl-date" type="date"/></div>
 <div class="lc-field"><label>Mood</label><div class="lc-chips" id="cl-mood"><button type="button" class="lc-chip" data-v="Radiant">Radiant</button><button type="button" class="lc-chip" data-v="Calm">Calm</button><button type="button" class="lc-chip" data-v="Tired">Tired</button><button type="button" class="lc-chip" data-v="Tender">Tender</button><button type="button" class="lc-chip" data-v="Low">Low</button></div></div>
 <div class="lc-field"><label>Flow</label><div class="lc-chips" id="cl-flow"><button type="button" class="lc-chip" data-v="None">None</button><button type="button" class="lc-chip" data-v="Light">Light</button><button type="button" class="lc-chip" data-v="Medium">Medium</button><button type="button" class="lc-chip" data-v="Heavy">Heavy</button></div></div>
 <div class="lc-field"><label>Symptoms</label><div class="lc-chips" id="cl-sym"><button type="button" class="lc-chip" data-v="Cramps">Cramps</button><button type="button" class="lc-chip" data-v="Headache">Headache</button><button type="button" class="lc-chip" data-v="Bloating">Bloating</button><button type="button" class="lc-chip" data-v="Back pain">Back pain</button><button type="button" class="lc-chip" data-v="Fatigue">Fatigue</button></div></div>
-<div class="lc-field"><label>Notes</label><textarea class="lc-area" id="cl-note" rows="2" placeholder="Anything she wants to remember"></textarea></div>
+<div class="lc-field"><label>Notes</label><textarea class="lc-area" id="cl-note" rows="2" placeholder="Anything you want to remember"></textarea></div>
 </div>
 <button class="lc-btn ghost" id="cl-start" type="button"><span class="material-symbols-outlined">water_drop</span>Period started this day</button>
 <button class="lc-btn primary" id="cl-save" type="button"><span class="material-symbols-outlined">save</span>Save entry</button>
@@ -48,6 +48,8 @@ export const MORE_JS = `
   function renderAll(){ if(window.LC&&window.LC.renderAll) window.LC.renderAll(); }
   function native(a,p){ if(window.LC&&window.LC.native) window.LC.native(a,p); }
   function partner(){ return D.partner||{name:'Esther',birthdayMonth:10,birthdayDay:7,birthYear:2007}; }
+  function role(){ var s=st(); return (s&&s.myRole)||((D.me&&D.me.name)||'Israel'); }
+  function owner(){ if(role()==='Esther') return 'Your'; return partner().name+String.fromCharCode(8217)+'s'; }
   function me(){ return (D.me&&D.me.name)||'Israel'; }
   function today(){ var n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
   function diff(a,b){ return Math.round((b-a)/86400000); }
@@ -114,7 +116,7 @@ export const MORE_JS = `
     var p=partner(), db=daysToBday(), dt=daysTogether(), ta=turningAge(), ca=currentAge();
     var ne=nextEvent();
     setText('#hm-hero-title', p.name+'\\u2019s Birthday');
-    setText('#hm-hero-sub', db===0 ? ('Today is '+p.name+'\\u2019s Special '+ordinal(ta)+' Birthday!') : (db+' Days Until Her Special '+ordinal(ta)+' Birthday!'));
+    setText('#hm-hero-sub', db===0 ? ('Today is '+owner()+' Special '+ordinal(ta)+' Birthday!') : (db+' Days Until '+owner()+' Special '+ordinal(ta)+' Birthday!'));
     setText('#hm-streak', streak()+' Day Love Streak');
     setText('#nt-count', S.notes.length+' notes');
     setText('#ev-count', S.events.length+' total');
@@ -188,7 +190,7 @@ export const MORE_JS = `
     } else {
       rems.push({icon:'water_drop',tone:'bubble-rose',title:'Log a cycle start',sub:'Tap Log an entry to begin gentle tracking',when:'Setup'});
     }
-    rems.push({icon:'chat_bubble',tone:'bubble-purple',title:'Write her a note',sub:'One sentence is enough, it counts',when:(S.settings.reminder||'20:00')});
+    rems.push({icon:'chat_bubble',tone:'bubble-purple',title:'Write a note',sub:'One sentence is enough, it counts',when:(S.settings.reminder||'20:00')});
     box.innerHTML=rems.map(function(r){
       return '<div class="bg-surface-container-lowest p-space-lg rounded-3xl shadow-[0_8px_24px_-4px_rgba(30,34,51,0.05),0_2px_6px_-1px_rgba(30,34,51,0.02)] flex items-center justify-between active:scale-[0.99] transition-transform">'+
         '<div class="flex items-center gap-space-md min-w-0"><div class="relative w-14 h-14 rounded-2xl bg-'+r.tone+'/15 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[28px] text-'+r.tone+'" style="font-variation-settings:\\'FILL\\' 1;">'+r.icon+'</span></div>'+
@@ -232,9 +234,28 @@ export const MORE_JS = `
 
   /* ------------------------------------------------ care log page */
   function setupCareLogPage(){
-    var root=$('#screen-care_log'); if(!root||root.__ready) return; root.__ready=true;
+    var root=$('#screen-care_log'); if(!root) return;
     function pick(sel){ var on=$('#'+sel+' .lc-chip.on'); return on?on.getAttribute('data-v'):''; }
-    $$('#screen-care_log .lc-chips').forEach(function(g){ $$('.lc-chip',g).forEach(function(b){ b.addEventListener('click', function(){ $$('.lc-chip',g).forEach(function(x){ x.className='lc-chip'; }); b.className='lc-chip on'; }); }); });
+    var S0=st(); var owner=!S0||!S0.myRole||S0.myRole==='Esther';
+    var sig=owner?'o':'v';
+    if(root.__sig!==sig){
+      root.__sig=sig;
+      var t0=$('#cl-title'); if(t0) t0.textContent = owner ? 'How are you feeling?' : 'How is '+partner().name+' feeling?';
+      var sv0=$('#cl-save'); if(sv0){ sv0.disabled=!owner; sv0.style.opacity=owner?'1':'.45'; }
+      var st0b=$('#cl-start'); if(st0b){ st0b.disabled=!owner; st0b.style.opacity=owner?'1':'.45'; }
+      $$('#screen-care_log .lc-chip').forEach(function(b){ b.disabled=!owner; });
+      var nb=$('#cl-wnote');
+      if(!owner && !nb){
+        nb=document.createElement('button');
+        nb.type='button'; nb.className='lc-btn pink'; nb.id='cl-wnote';
+        nb.innerHTML='<span class="material-symbols-outlined">edit_note</span>Write a note';
+        nb.addEventListener('click', function(){ if(window.LC&&window.LC.openCareNote) window.LC.openCareNote(); });
+        var host0=root.querySelector('main > div'); if(host0) host0.appendChild(nb);
+      }
+      if(owner && nb && nb.parentNode) nb.parentNode.removeChild(nb);
+    }
+    if(root.__wired) return; root.__wired=true;
+    $$('#screen-care_log .lc-chips').forEach(function(g){ $$('.lc-chip',g).forEach(function(b){ b.addEventListener('click', function(){ if(!requireEsther()) return; $$('.lc-chip',g).forEach(function(x){ x.className='lc-chip'; }); b.className='lc-chip on'; }); }); });
     var dEl=$('#cl-date'); if(dEl){ var t=new Date(); dEl.value=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2); }
     var st1=$('#cl-start'); if(st1) st1.addEventListener('click', function(){
       if(!requireEsther()) return;
