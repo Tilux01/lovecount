@@ -59,3 +59,6 @@ push-server/
 
 lovecount.apk
 .tilux/landing/
+
+# release binaries (published via GitHub Releases, never committed)
+LoveCount-*.apk

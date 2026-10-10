@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="LoveCount">
+  <defs>
+    <linearGradient id="lcbg" x1="0.08" y1="0" x2="0.92" y2="1">
+      <stop offset="0" stop-color="#FF9BC0"/>
+      <stop offset="0.46" stop-color="#F43F7A"/>
+      <stop offset="1" stop-color="#B4144C"/>
+    </linearGradient>
+    <linearGradient id="lcheart" x1="0.2" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.7" stop-color="#FFF6F9"/>
+      <stop offset="1" stop-color="#FFE1EB"/>
+    </linearGradient>
+    <radialGradient id="lcsheen" cx="0.24" cy="0.16" r="0.68">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.42"/>
+      <stop offset="0.55" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="lcsoft" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#6E0726" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#lcbg)"/>
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#lcsheen)"/>
+  <circle cx="256" cy="246" r="168" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="13"/>
+  <path d="M256 78 A168 168 0 0 1 424 246" fill="none" stroke="#FFFFFF" stroke-opacity="0.62" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="424" cy="246" r="14" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M256 432C249 425 100 334 100 220C100 152 150 104 210 104C240 104 253 117 256 127C259 117 272 104 302 104C362 104 412 152 412 220C412 334 263 425 256 432Z" fill="url(#lcheart)" filter="url(#lcsoft)"/>
+  <ellipse cx="196" cy="168" rx="46" ry="30" fill="#FFFFFF" opacity="0.55" transform="rotate(-24 196 168)"/>
+</svg>

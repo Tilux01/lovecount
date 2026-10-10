@@ -21,7 +21,8 @@
     "web": "expo start --web",
     "build:html": "node generate_html.js",
     "verify": "node verify.js",
-    "test": "node verify.js"
+    "test": "node verify.js",
+    "build:site": "node build_site.js"
   },
   "private": true,
   "devDependencies": {

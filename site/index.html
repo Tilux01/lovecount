@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LoveCount - every day you have together, counted</title>
+<meta name="description" content="LoveCount keeps your days, notes, moments and care in one private place, synced live between the two of you. Android download.">
+<meta name="theme-color" content="#FAF7FF">
+<meta property="og:title" content="LoveCount">
+<meta property="og:description" content="Every day you have together, counted. Private by design, synced live.">
+<meta property="og:image" content="landing-assets/logo.png">
+<link rel="icon" href="landing-assets/favicon.png">
+<link rel="apple-touch-icon" href="landing-assets/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--peach:#FFF9F7;--lav:#FAF7FF;--bg:#FAF8FF;--card:#FFFFFF;
+--ink:#171B2B;--ink2:#404754;--muted:#6B7280;--subtle:#9CA3AF;
+--hair:#F1ECF9;--outl:#C0C6D6;
+--c-low:#F3F2FF;--c:#EBEDFF;--c-high:#E4E7FE;--c-top:#DEE1F9;
+--primary:#005BB0;--primary-c:#0074DC;--primary-fix:#D5E3FF;
+--pink:#EC4899;--rose:#F43F5E;--deep:#B4144C;
+--purple:#8B5CF6;--sec:#712AE2;--blue:#0088FF;--emerald:#10B981;--amber:#FBBF24;
+--lav-soft:#EDE9FE;--inv:#2C3041;
+--sh-card:0 8px 24px -4px rgba(30,34,51,.05);
+--sh-glass:0 16px 36px -8px rgba(30,34,51,.12),0 4px 12px rgba(30,34,51,.04);
+--sh-logo:0 18px 40px -12px rgba(244,63,122,.5);
+--sh-brand:0 12px 28px -8px rgba(236,72,153,.45);
+--sh-primary:0 10px 24px -8px rgba(0,91,176,.5);
+--sh-lift:0 20px 40px -12px rgba(30,34,51,.14);
+--r:1rem;--r-lg:2rem;--r-full:9999px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+margin:0;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;
+color:var(--ink);background:linear-gradient(to bottom,var(--peach) 0%,var(--lav) 55%,#FDF2F4 100%);
+background-attachment:fixed;min-height:100vh;-webkit-font-smoothing:antialiased;
+line-height:1.5;overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;}
+::selection{background:var(--pink);color:#fff;}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 1rem;}
+@media(min-width:48rem){.wrap{padding:0 1.5rem;}}
+@media(min-width:64rem){.wrap{padding:0 2rem;}}
+.eyebrow{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;color:var(--pink);}
+h1,h2,h3,h4{margin:0;color:var(--ink);}
+h1{font-size:36px;line-height:44px;letter-spacing:-.03em;font-weight:800;}
+h2{font-size:24px;line-height:30px;letter-spacing:-.02em;font-weight:700;}
+h3{font-size:17px;line-height:22px;font-weight:600;}
+p{margin:0;}
+.lede{font-size:16px;line-height:22px;font-weight:500;color:var(--ink2);}
+.body{font-size:14px;line-height:20px;color:var(--ink2);}
+.small{font-size:12px;line-height:16px;color:var(--muted);}
+@media(min-width:64rem){h1{font-size:62px;line-height:1.03;letter-spacing:-.035em;}h2{font-size:28px;line-height:34px;}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:0;cursor:pointer;
+padding:.875rem 1.5rem;border-radius:var(--r-full);font-size:13px;line-height:18px;font-weight:700;
+transition:transform .15s ease,box-shadow .2s ease,background .2s ease;-webkit-tap-highlight-color:transparent;}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-c));color:#fff;box-shadow:var(--sh-primary);}
+.btn-brand{background:linear-gradient(to right,var(--pink),var(--rose));color:#fff;box-shadow:var(--sh-brand);}
+.btn-ghost{background:var(--c-low);color:var(--ink);}
+.btn-sm{padding:.625rem 1.125rem;font-size:12px;}
+.btn svg{width:16px;height:16px;flex:none;}
+
+nav.dock{position:sticky;top:0;z-index:60;padding:.75rem 1rem;transition:padding .25s ease;}
+nav.dock .bar{display:flex;align-items:center;gap:.75rem;width:100%;max-width:72rem;margin:0 auto;height:3.75rem;
+padding:0 .625rem 0 .875rem;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+border-radius:var(--r-full);border-top:1px solid rgba(255,255,255,.6);transition:box-shadow .25s ease;}
+nav.dock.stuck .bar{box-shadow:var(--sh-glass);}
+.brand{display:flex;align-items:center;gap:.625rem;font-weight:800;font-size:17px;letter-spacing:-.02em;}
+.brand img{width:2rem;height:2rem;border-radius:.6rem;box-shadow:var(--sh-logo);}
+nav .links{display:none;align-items:center;gap:.25rem;margin-left:auto;}
+nav .links a{font-size:11px;line-height:14px;letter-spacing:.02em;font-weight:600;color:var(--ink2);
+padding:.5rem .75rem;border-radius:var(--r-full);transition:color .2s ease,background .2s ease;}
+nav .links a:hover{color:var(--primary);background:rgba(213,227,255,.4);}
+nav .cta{display:none;margin-left:.5rem;}
+nav .burger{margin-left:auto;width:2.75rem;height:2.75rem;border:0;background:var(--c-low);border-radius:var(--r-full);
+display:grid;place-items:center;cursor:pointer;color:var(--ink);}
+nav .burger svg{width:20px;height:20px;}
+@media(min-width:64rem){nav .links{display:flex;}nav .cta{display:inline-flex;}nav .burger{display:none;}}
+.sheet{position:fixed;inset:0;z-index:70;display:none;}
+.sheet.on{display:block;}
+.sheet .scrim{position:absolute;inset:0;background:rgba(23,27,43,.45);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.sheet .panel{position:absolute;left:0;right:0;bottom:0;background:var(--card);border-radius:var(--r-lg) var(--r-lg) 0 0;
+padding:1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom,0px));box-shadow:0 -12px 40px -8px rgba(30,34,51,.22);
+animation:up .3s cubic-bezier(.2,.8,.2,1);}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet .grab{width:2.5rem;height:.25rem;border-radius:var(--r-full);background:var(--c-top);margin:0 auto .875rem;}
+.sheet .panel a{display:flex;align-items:center;gap:.75rem;padding:.8125rem 1rem;border-radius:var(--r);
+background:var(--lav);margin-bottom:.5rem;font-size:15px;font-weight:600;}
+
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;pointer-events:none;animation:drift 18s ease-in-out infinite alternate;}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(24px,-28px,0) scale(1.07)}}
+.hero{position:relative;overflow:hidden;padding:2.5rem 0 1rem;}
+.hero .grid{display:grid;gap:3rem;grid-template-columns:1fr;align-items:center;}
+@media(min-width:64rem){.hero{padding:4rem 0 2rem;}.hero .grid{grid-template-columns:1.05fr .95fr;gap:2.5rem;}}
+.badge{display:inline-flex;align-items:center;gap:.375rem;padding:.375rem .75rem;border-radius:var(--r-full);
+background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+border:1px solid var(--hair);font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;color:var(--ink2);text-transform:uppercase;}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--rose);display:block;}
+.hero .copy{display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start;}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:.625rem;align-items:center;}
+.trust{display:flex;flex-wrap:wrap;gap:.375rem 1.125rem;font-size:12px;line-height:16px;color:var(--muted);}
+.trust span{display:inline-flex;align-items:center;gap:.375rem;}
+.trust svg{width:14px;height:14px;color:var(--emerald);flex:none;}
+
+.stage{position:relative;display:flex;justify-content:center;}
+.device{position:relative;width:300px;border-radius:2.25rem;padding:.55rem;background:var(--ink);
+box-shadow:0 40px 80px -24px rgba(23,27,43,.45);}
+@media(min-width:64rem){.device{width:340px;}}
+.device::after{content:"";position:absolute;inset:0;border-radius:2.25rem;border:1px solid rgba(255,255,255,.12);pointer-events:none;}
+.device .screen{border-radius:1.85rem;overflow:hidden;aspect-ratio:390/844;background:var(--lav);}
+.device .screen img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.chip{position:absolute;display:none;align-items:center;gap:.5rem;padding:.625rem .875rem;border-radius:var(--r);
+background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+box-shadow:var(--sh-glass);font-size:11px;line-height:14px;font-weight:700;color:var(--ink);white-space:nowrap;}
+.chip b{display:block;font-size:10px;line-height:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.chip svg{width:18px;height:18px;flex:none;}
+@media(min-width:64rem){
+.chip{display:flex;}
+.chip-a{top:11%;left:-1.5rem;animation:float 6s ease-in-out infinite alternate;}
+.chip-b{bottom:17%;right:-1.5rem;animation:float 7.5s ease-in-out infinite alternate-reverse;}
+.chip-c{bottom:2%;left:2rem;animation:float 9s ease-in-out infinite alternate;}
+@keyframes float{from{transform:translateY(-6px)}to{transform:translateY(8px)}}
+}
+
+section{padding:4.5rem 0;}
+@media(min-width:64rem){section{padding:7rem 0;}}
+.head{max-width:44rem;margin:0 auto 2.5rem;text-align:center;display:flex;flex-direction:column;gap:.75rem;align-items:center;}
+.band{background:var(--c);border-radius:var(--r-lg);padding:1.5rem;}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;background:var(--c);border-radius:var(--r-lg);padding:1.5rem;}
+@media(min-width:48rem){.stats{grid-template-columns:repeat(4,1fr);gap:1rem;padding:2rem;}}
+.stat{text-align:center;display:flex;flex-direction:column;gap:.25rem;}
+.stat .n{font-size:30px;line-height:32px;letter-spacing:-.02em;font-weight:800;color:var(--ink);}
+.stat .k{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;color:var(--muted);}
+
+.cards{display:grid;gap:1rem;grid-template-columns:1fr;}
+@media(min-width:48rem){.cards{grid-template-columns:1fr 1fr;}}
+@media(min-width:64rem){.cards{grid-template-columns:repeat(3,1fr);}}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r-lg);padding:1.5rem;
+display:flex;flex-direction:column;gap:.75rem;box-shadow:var(--sh-card);
+transition:transform .25s ease,box-shadow .25s ease;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-lift);}
+.card .ico{width:2.75rem;height:2.75rem;border-radius:var(--r);display:grid;place-items:center;}
+.card .ico svg{width:20px;height:20px;}
+.card p{font-size:14px;line-height:20px;color:var(--ink2);}
+
+.split{display:grid;gap:2.5rem;grid-template-columns:1fr;align-items:center;}
+@media(min-width:64rem){.split{grid-template-columns:1.05fr .95fr;gap:3rem;}.split.flip .txt{order:2;}}
+.split .txt{display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start;}
+.rule{display:flex;gap:.75rem;align-items:flex-start;background:var(--card);border:1px solid var(--hair);
+border-radius:var(--r);padding:1rem;box-shadow:var(--sh-card);}
+.rule .dot{width:2.25rem;height:2.25rem;border-radius:var(--r-full);display:grid;place-items:center;flex:none;}
+.rule .dot svg{width:18px;height:18px;}
+.rule h4{font-size:14px;line-height:20px;font-weight:700;}
+.rule p{font-size:12px;line-height:16px;color:var(--muted);margin-top:.125rem;}
+.rules{display:flex;flex-direction:column;gap:.75rem;width:100%;}
+.tag{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;
+padding:.3125rem .625rem;border-radius:var(--r-full);background:var(--lav-soft);color:var(--sec);}
+
+.rail{display:flex;gap:.875rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.5rem 1rem 1.5rem;
+scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.rail::-webkit-scrollbar{display:none;}
+.rail .shot{scroll-snap-align:center;flex:none;width:216px;}
+@media(min-width:48rem){.rail .shot{width:248px;}}
+.rail .frame{border-radius:1.5rem;overflow:hidden;background:var(--ink);padding:.4rem;box-shadow:var(--sh-glass);
+transition:transform .25s ease;}
+.rail .frame:hover{transform:translateY(-6px);}
+.rail .frame .in{border-radius:1.2rem;overflow:hidden;aspect-ratio:390/844;background:var(--lav);cursor:zoom-in;}
+.rail .frame img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.rail .cap{text-align:center;font-size:11px;line-height:14px;font-weight:700;letter-spacing:.02em;
+color:var(--muted);margin-top:.625rem;}
+.rail-hint{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:11px;font-weight:600;color:var(--subtle);}
+
+.dark{background:var(--inv);border-radius:var(--r-lg);padding:2.5rem 1.5rem;color:#fff;overflow:hidden;}
+@media(min-width:64rem){.dark{padding:3.5rem 3rem;}}
+.dark h2,.dark h3{color:#fff;}
+.dark p{color:rgba(255,255,255,.72);}
+.dark .split{gap:2.5rem;}
+.dark .mini{display:flex;gap:.625rem;align-items:center;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);}
+.dark .mini svg{width:16px;height:16px;color:#fff;opacity:.8;flex:none;}
+.dark .shots{display:flex;gap:1rem;justify-content:center;}
+.dark .shots .frame{flex:1 1 0;max-width:190px;border-radius:1.5rem;background:rgba(255,255,255,.08);padding:.4rem;
+border:1px solid rgba(255,255,255,.12);}
+.dark .shots .in{border-radius:1.2rem;overflow:hidden;aspect-ratio:390/844;cursor:zoom-in;}
+.dark .shots img{width:100%;height:100%;object-fit:cover;object-position:top;}
+
+.dl{background:linear-gradient(135deg,var(--pink),var(--rose) 60%,var(--deep));border-radius:var(--r-lg);
+padding:2.5rem 1.5rem;color:#fff;text-align:center;box-shadow:var(--sh-brand);position:relative;overflow:hidden;}
+@media(min-width:64rem){.dl{padding:3.5rem 3rem;}}
+.dl h2{color:#fff;}
+.dl p{color:rgba(255,255,255,.9);}
+.dl .btn{background:#fff;color:var(--deep);box-shadow:0 14px 30px -10px rgba(110,7,38,.5);}
+.dl .facts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1.25rem;}
+.dl .facts span{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;
+padding:.4375rem .75rem;border-radius:var(--r-full);background:rgba(255,255,255,.18);
+border:1px solid rgba(255,255,255,.28);}
+.dl .note{font-size:12px;line-height:16px;color:rgba(255,255,255,.82);margin-top:1rem;}
+
+footer{background:var(--inv);color:#fff;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:2.5rem 0 1.5rem;margin-top:1rem;}
+footer .cols{display:grid;gap:2rem;grid-template-columns:1fr;}
+@media(min-width:48rem){footer .cols{grid-template-columns:1.4fr 1fr 1fr;}}
+footer .brand{color:#fff;}
+footer h4{font-size:10px;line-height:12px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.75rem;}
+footer a.fl{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.78);padding:.25rem 0;}
+footer a.fl:hover{color:#fff;}
+footer p{color:rgba(255,255,255,.6);font-size:12px;line-height:16px;}
+footer .base{margin-top:2rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.12);
+display:flex;flex-wrap:wrap;gap:.75rem;justify-content:space-between;align-items:center;}
+
+.lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:1rem;}
+.lb.on{display:flex;}
+.lb .scrim{position:absolute;inset:0;background:rgba(23,27,43,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.lb .stagebox{position:relative;max-height:92vh;border-radius:2.25rem;overflow:hidden;background:var(--ink);padding:.45rem;box-shadow:0 40px 80px -24px rgba(0,0,0,.6);animation:pop .28s cubic-bezier(.2,.8,.2,1);}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.lb .stagebox img{max-height:88vh;width:auto;border-radius:1.9rem;}
+.lb button{position:absolute;top:1.25rem;right:1.25rem;width:2.75rem;height:2.75rem;border:0;border-radius:var(--r-full);
+background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;cursor:pointer;z-index:2;}
+.lb button svg{width:20px;height:20px;}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .52s cubic-bezier(.2,.8,.2,1),transform .52s cubic-bezier(.2,.8,.2,1);}
+.rv.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto;}
+.blob,.chip{animation:none !important;}
+.rv{opacity:1;transform:none;transition:none;}
+.sheet .panel,.lb .stagebox{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<nav class="dock" id="dock">
+<div class="bar">
+<a class="brand" href="#top">
+<img src="landing-assets/logo.svg" alt="LoveCount" width="32" height="32">
+<span>LoveCount</span>
+</a>
+<div class="links">
+<a href="#features">Features</a>
+<a href="#care">Care</a>
+<a href="#screens">Screens</a>
+<a href="#live">Live sync</a>
+<a href="#private">Privacy</a>
+</div>
+<a class="btn btn-brand btn-sm cta" href="#download">Get the app</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+</div>
+</nav>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+<div class="scrim" data-close></div>
+<div class="panel">
+<div class="grab"></div>
+<a href="#features" data-close>Features</a>
+<a href="#care" data-close>Care</a>
+<a href="#screens" data-close>Screens</a>
+<a href="#live" data-close>Live sync</a>
+<a href="#private" data-close>Privacy</a>
+<a href="#download" data-close style="background:linear-gradient(to right,#EC4899,#F43F5E);color:#fff;justify-content:center;">Get the app</a>
+</div>
+</div>
+
+<div class="hero" id="top">
+<div class="blob" style="width:22rem;height:22rem;background:#EC4899;top:-6rem;left:-6rem;"></div>
+<div class="blob" style="width:18rem;height:18rem;background:#005BB0;bottom:-6rem;right:-4rem;animation-delay:-6s;"></div>
+<div class="wrap">
+<div class="grid">
+<div class="copy rv">
+<span class="badge"><i></i>One room, two people, nobody else</span>
+<h1>Every day you have together, counted.</h1>
+<p class="lede">LoveCount keeps your days, notes, moments and care in one quiet place that stays in sync between the two of you. No feed to scroll, no strangers, no ads chasing you.</p>
+<div class="cta-row">
+<a class="btn btn-brand" href="#download" data-apk>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+Download for Android
+</a>
+<a class="btn btn-ghost" href="#features">See what is inside</a>
+</div>
+<div class="trust">
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Free, no account</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Private room by default</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Synced live</span>
+</div>
+</div>
+<div class="stage rv">
+<div class="device">
+<div class="screen"><img src="landing-assets/home.webp" alt="LoveCount home screen" width="780" height="1688" fetchpriority="high"></div>
+</div>
+<div class="chip chip-a">
+<svg viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.7-9-9.4C1.8 8.3 3.8 5.4 6.9 5.1c1.9-.2 3.6.8 4.4 2.4h1.4c.8-1.6 2.5-2.6 4.4-2.4 3.1.3 5.1 3.2 3.9 6.5-1.5 4.7-9 9.4-9 9.4z"/></svg>
+<div><b>Days together</b><span id="chipDays">0 days</span></div>
+</div>
+<div class="chip chip-b">
+<svg viewBox="0 0 24 24" fill="none" stroke="#005BB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+<div><b>Next big day</b><span id="chipBday">in 0 days</span></div>
+</div>
+<div class="chip chip-c">
+<svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.4-3 8-7 9-4-1-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+<div><b>Where it lives</b><span>Your own private room</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section style="padding-top:2.5rem;">
+<div class="wrap rv">
+<div class="stats">
+<div class="stat"><span class="n" id="sDays">0</span><span class="k">Days together</span></div>
+<div class="stat"><span class="n" id="sBday">0</span><span class="k">Days to her birthday</span></div>
+<div class="stat"><span class="n">4</span><span class="k">Trackers built in</span></div>
+<div class="stat"><span class="n">0</span><span class="k">Ads and trackers</span></div>
+</div>
+</div>
+</section>
+
+<section id="features">
+<div class="wrap">
+<div class="head rv">
+<span class="eyebrow">What is inside</span>
+<h2>Everything the two of you keep track of, in one place</h2>
+<p class="body">Six things that actually get used, built around how the two of you already live, not around an engagement metric.</p>
+</div>
+<div class="cards">
+<div class="card rv">
+<div class="ico" style="background:rgba(236,72,153,.14);color:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/><path d="M12 14v3M10.5 15.5h3"/></svg></div>
+<h3>Countdowns that matter</h3>
+<p>Her birthday, your anniversary, and any day you decide is worth counting. The home screen leads with the numbers, not a timeline of nothing.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(0,136,255,.14);color:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 9h7M8 13h7M8 17h4"/></svg></div>
+<h3>Notes that land softly</h3>
+<p>Leave a note with a mood attached. She can read it whenever, and the ones that hit get hearts back. It is the good part of a text thread with none of the noise.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(139,92,246,.14);color:var(--purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg></div>
+<h3>Moments, not a photo dump</h3>
+<p>Drop the small things in as they happen. Photos get their own quiet gallery instead of disappearing into a camera roll you never open again.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(244,63,94,.14);color:var(--rose)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-6.5-4-6.5-8.5A4.5 4.5 0 0 1 12 8.6a4.5 4.5 0 0 1 6.5 2.9C18.5 16 12 20 12 20z"/><path d="M12 8.6V4"/></svg></div>
+<h3>Cycle and care, handled with respect</h3>
+<p>Cycle tracking, mood, symptoms and the care log, all built for one person to actually use and the other to simply be aware of. Never clinical, never a lecture.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(113,42,226,.14);color:var(--sec)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H8l-4 3V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z"/></svg></div>
+<h3>Chat that arrives instantly</h3>
+<p>One live stream carries the room. Messages, typing, presence and delivery all ride the same connection, so it feels immediate instead of refreshed.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(16,185,129,.14);color:var(--emerald)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h2l1.4 4-2 1.2a12 12 0 0 0 6.9 6.9l1.2-2 4 1.4v2A2.5 2.5 0 0 1 17.5 20C10.6 20 4 13.4 4 6.5z"/></svg></div>
+<h3>Calls, the real kind</h3>
+<p>Voice and video calling that runs directly between your two devices. No dialling a platform, no joining a lobby, no account to hand over first.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="care">
+<div class="wrap">
+<div class="split">
+<div class="txt rv">
+<span class="eyebrow">Care, done properly</span>
+<h2>One person logs it. The other just knows.</h2>
+<p class="lede">The care section reads the room. It greets her as you, and she gets the full set of controls. He gets the picture, plus exactly one way to contribute.</p>
+<div class="rules">
+<div class="rule">
+<div class="dot" style="background:rgba(244,63,94,.14);color:var(--rose)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+<div><h4>Esther: full logging</h4><p>Mood, flow, symptoms, period start and the care log, all hers to write.</p></div>
+</div>
+<div class="rule">
+<div class="dot" style="background:rgba(0,91,176,.14);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+<div><h4>Israel: view only</h4><p>He reads the log and the cycle. Nothing is editable from his side, and nothing is hidden from him either.</p></div>
+</div>
+<div class="rule">
+<div class="dot" style="background:rgba(236,72,153,.14);color:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l3.5-1 10-10a2.5 2.5 0 0 0-3.5-3.5l-10 10L4 20z"/><path d="M13.5 6.5L17 10"/></svg></div>
+<div><h4>And one thing he can write</h4><p>Write a note. It lands in her feed signed from him. That is the only pen he gets, on purpose.</p></div>
+</div>
+</div>
+</div>
+<div class="stage rv">
+<div class="device">
+<div class="screen"><img src="landing-assets/care.webp" alt="LoveCount care screen" width="780" height="1688" loading="lazy"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="screens" style="padding-bottom:2rem;">
+<div class="wrap">
+<div class="head rv">
+<span class="eyebrow">Actual screens</span>
+<h2>No mockups, no lorem ipsum</h2>
+<p class="body">These are the real screens, captured from the build you are about to install. Tap any one to see it full size.</p>
+</div>
+</div>
+<div class="rail rv" id="rail">
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/home.webp" data-title="Home"><img src="landing-assets/home-1x.webp" alt="Home screen" loading="lazy"></div></div><figcaption class="cap">Home</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/events.webp" data-title="Events"><img src="landing-assets/events-1x.webp" alt="Events screen" loading="lazy"></div></div><figcaption class="cap">Events</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/notes.webp" data-title="Notes"><img src="landing-assets/notes-1x.webp" alt="Notes screen" loading="lazy"></div></div><figcaption class="cap">Notes</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/moments.webp" data-title="Moments"><img src="landing-assets/moments-1x.webp" alt="Moments screen" loading="lazy"></div></div><figcaption class="cap">Moments</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/care.webp" data-title="Care"><img src="landing-assets/care-1x.webp" alt="Care screen" loading="lazy"></div></div><figcaption class="cap">Care</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/cycle.webp" data-title="Cycle"><img src="landing-assets/cycle-1x.webp" alt="Cycle screen" loading="lazy"></div></div><figcaption class="cap">Cycle</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/chat.webp" data-title="Chat"><img src="landing-assets/chat-1x.webp" alt="Chat screen" loading="lazy"></div></div><figcaption class="cap">Chat</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/call.webp" data-title="Calling"><img src="landing-assets/call-1x.webp" alt="Incoming call screen" loading="lazy"></div></div><figcaption class="cap">Calling</figcaption></figure>
+<figure class="shot"><div class="frame"><div class="in" data-shot="landing-assets/profile.webp" data-title="Profile"><img src="landing-assets/profile-1x.webp" alt="Profile screen" loading="lazy"></div></div><figcaption class="cap">Profile</figcaption></figure>
+</div>
+<div class="wrap rv"><p class="rail-hint">Swipe or scroll sideways for more</p></div>
+</section>
+
+<section id="live">
+<div class="wrap rv">
+<div class="dark">
+<div class="split">
+<div class="txt">
+<span class="eyebrow" style="color:#F9A8D4">Live sync</span>
+<h2>Two phones, one room, no refresh button</h2>
+<p class="lede" style="color:rgba(255,255,255,.72)">Every change travels over a single live stream that the whole app shares. Type a message and it is there. Start a call and the other phone rings.</p>
+<div class="rules" style="gap:.5rem">
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Messages, typing and presence on one connection</div>
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Voice and video call straight between devices</div>
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Keeps working if the signal drops, then catches up</div>
+<div class="mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Push alerts when the app is closed</div>
+</div>
+</div>
+<div class="shots">
+<div class="frame"><div class="in" data-shot="landing-assets/chat.webp" data-title="Chat"><img src="landing-assets/chat-1x.webp" alt="Chat" loading="lazy"></div></div>
+<div class="frame"><div class="in" data-shot="landing-assets/call.webp" data-title="Incoming call"><img src="landing-assets/call-1x.webp" alt="Incoming call" loading="lazy"></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="private">
+<div class="wrap">
+<div class="head rv">
+<span class="eyebrow">Private by design</span>
+<h2>Your relationship is not a data source</h2>
+</div>
+<div class="cards">
+<div class="card rv">
+<div class="ico" style="background:rgba(16,185,129,.14);color:var(--emerald)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg></div>
+<h3>Two people in the room</h3>
+<p>The whole app lives inside one private room with exactly two members. There is no discovery, no suggested people, and no way to stumble into it.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(0,91,176,.14);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></svg></div>
+<h3>Nothing is sold</h3>
+<p>No analytics pipeline, no ad networks, no third party reading your notes to work out what to sell you next. The app has no tracking to switch off.</p>
+</div>
+<div class="card rv">
+<div class="ico" style="background:rgba(251,191,36,.18);color:#B45309"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M6 7l1 12.5A1.5 1.5 0 0 0 8.5 21h7a1.5 1.5 0 0 0 1.5-1.5L18 7"/></svg></div>
+<h3>Yours to delete</h3>
+<p>Everything can be cleared from the app. When you delete something it is gone from the room, not quietly archived on a server you cannot see.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="download">
+<div class="wrap rv">
+<div class="dl">
+<span class="eyebrow" style="color:rgba(255,255,255,.85)">Get LoveCount</span>
+<h2 style="margin-top:.5rem">Install it on both phones tonight</h2>
+<p class="lede" style="color:rgba(255,255,255,.9);margin-top:.75rem;max-width:34rem;margin-left:auto;margin-right:auto">One download, one room, and every day from here is counted for you.</p>
+<div style="margin-top:1.5rem">
+<a class="btn" href="https://github.com/Tilux01/lovecount/releases/download/v1.0.0/LoveCount-1.0.0.apk" data-apk download>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+Download the Android app
+</a>
+</div>
+<div class="facts">
+<span>Android 8.0 and up</span>
+<span>79.4 MB</span>
+<span>Version 1.0.0</span>
+<span>com.tilux.lovecount</span>
+</div>
+<p class="note">Android only for now, an iOS build is not published yet. If your phone warns about installing from outside the Play Store, that is normal for a direct install, allow it once.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<div class="cols">
+<div>
+<a class="brand" href="#top"><img src="landing-assets/logo.svg" alt="LoveCount" width="32" height="32"><span>LoveCount</span></a>
+<p style="margin-top:.75rem;max-width:22rem">A private space for two people to keep their days, notes, moments and care in one place.</p>
+</div>
+<div>
+<h4>Page</h4>
+<a class="fl" href="#features">Features</a>
+<a class="fl" href="#care">Care</a>
+<a class="fl" href="#screens">Screens</a>
+<a class="fl" href="#live">Live sync</a>
+</div>
+<div>
+<h4>Get it</h4>
+<a class="fl" href="#download">Download for Android</a>
+<a class="fl" href="https://github.com/Tilux01/lovecount" target="_blank" rel="noopener">Source on GitHub</a>
+<a class="fl" href="#private">Privacy</a>
+</div>
+</div>
+<div class="base">
+<p>LoveCount 1.0.0</p>
+<p>Built by Tilux</p>
+</div>
+</div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot">
+<div class="scrim" data-lbclose></div>
+<button data-lbclose aria-label="Close">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+<div class="stagebox"><img id="lbImg" src="" alt=""></div>
+</div>
+
+<script>
+(function(){
+var START = new Date(2025,7,10,0,0,0);
+var BDAY = {m:9,d:7};
+var day = 86400000;
+function midnight(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+function daysTogether(){return Math.max(0,Math.floor((midnight(new Date())-midnight(START))/day));}
+function daysToBirthday(){
+  var n=midnight(new Date()),y=n.getFullYear();
+  var t=new Date(y,BDAY.m,BDAY.d);
+  if(t<n){t=new Date(y+1,BDAY.m,BDAY.d);}
+  return Math.round((t-n)/day);
+}
+function paint(){
+  var a=daysTogether(),b=daysToBirthday();
+  var set=function(id,v){var e=document.getElementById(id);if(e){e.textContent=v;}};
+  set('sDays',a.toLocaleString());
+  set('sBday',b.toLocaleString());
+  set('chipDays',a.toLocaleString()+' days');
+  set('chipBday','in '+b.toLocaleString()+' days');
+}
+paint();
+setInterval(paint,60000);
+
+var dock=document.getElementById('dock');
+var onScroll=function(){if(window.scrollY>24){dock.classList.add('stuck');}else{dock.classList.remove('stuck');}};
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+var sheet=document.getElementById('sheet');
+var burger=document.getElementById('burger');
+function closeSheet(){sheet.classList.remove('on');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+burger.addEventListener('click',function(){
+  var open=sheet.classList.toggle('on');
+  burger.setAttribute('aria-expanded',open?'true':'false');
+  document.body.style.overflow=open?'hidden':'';
+});
+function scrollToId(id){
+  var el=document.getElementById(id);
+  if(!el){return;}
+  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-84,behavior:'smooth'});
+}
+sheet.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]');
+  if(a){
+    e.preventDefault();
+    var id=a.getAttribute('href').slice(1);
+    closeSheet();
+    scrollToId(id);
+    return;
+  }
+  if(e.target.hasAttribute('data-close')){closeSheet();}
+});
+
+var lb=document.getElementById('lb');
+var lbImg=document.getElementById('lbImg');
+var lastFocus=null;
+function openLb(src,title){
+  lastFocus=document.activeElement;
+  lbImg.src=src;
+  lbImg.alt=title||'Screenshot';
+  lb.classList.add('on');
+  document.body.style.overflow='hidden';
+  lb.querySelector('button').focus();
+}
+function closeLb(){
+  lb.classList.remove('on');
+  lbImg.src='';
+  document.body.style.overflow='';
+  if(lastFocus){lastFocus.focus();}
+}
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-shot]');
+  if(t){openLb(t.getAttribute('data-shot'),t.getAttribute('data-title'));return;}
+  if(e.target.hasAttribute('data-lbclose')){closeLb();}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Escape'){return;}
+  if(lb.classList.contains('on')){closeLb();}
+  else if(sheet.classList.contains('on')){closeSheet();}
+});
+
+var LOCAL='lovecount.apk';
+var REMOTE='https://github.com/Tilux01/lovecount/releases/download/v1.0.0/LoveCount-1.0.0.apk';
+function wireApk(url){
+  var all=document.querySelectorAll('[data-apk]');
+  for(var i=0;i<all.length;i++){all[i].href=url;}
+}
+if(location.protocol==='http:'||location.protocol==='https:'){
+  var head=new XMLHttpRequest();
+  head.open('HEAD',LOCAL,true);
+  head.onload=function(){if(head.status>=200&&head.status<400){wireApk(LOCAL);}};
+  head.onerror=function(){wireApk(REMOTE);};
+  head.send();
+}else{
+  wireApk(REMOTE);
+}
+
+var rvs=Array.prototype.slice.call(document.querySelectorAll('.rv'));
+rvs.forEach(function(el){
+  var sib=el.parentElement?Array.prototype.indexOf.call(el.parentElement.children,el):0;
+  el.style.transitionDelay=(Math.min(sib,6)*70)+'ms';
+});
+var ticking=false;
+function sweep(){
+  ticking=false;
+  var h=window.innerHeight*.92;
+  for(var i=rvs.length-1;i>=0;i--){
+    if(rvs[i].getBoundingClientRect().top<h){rvs[i].classList.add('in');rvs.splice(i,1);}
+  }
+}
+function onMove(){if(!ticking){ticking=true;requestAnimationFrame(sweep);}}
+window.addEventListener('scroll',onMove,{passive:true});
+window.addEventListener('resize',onMove,{passive:true});
+window.addEventListener('load',sweep);
+sweep();setTimeout(sweep,400);setTimeout(sweep,1200);
+})();
+</script>
+</body>
+</html>
