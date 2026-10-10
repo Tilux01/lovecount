@@ -105,6 +105,10 @@ export const NEW_SCREENS = [
           <span class="font-label-md text-label-md text-on-surface-variant">Silent alerts (no sound)</span>
           <button class="lc-sw" id="lc-quiet-sw" type="button" aria-label="Silent alerts"></button>
         </div>`)}
+      <div id="lc-ios-hint" style="display:none">${card(`<div class="flex flex-col gap-2">
+        <span class="font-headline-sm text-headline-sm text-on-surface">iPhone needs one more step</span>
+        <span class="font-body-sm text-body-sm text-text-muted" id="lc-ios-hint-text">Alerts reach this phone only once LoveCount sits on your home screen. Open LoveCount in Safari, tap the Share button, choose Add to Home Screen, then launch it from your home screen and tap Enable notifications.</span>
+      </div>`)}</div>
       ${card(`<div class="flex items-center justify-between"><span class="font-headline-sm text-headline-sm text-on-surface">What you get told</span><span class="material-symbols-outlined text-bubble-rose text-[22px]" style="font-variation-settings:'FILL' 1;">tune</span></div>
         <div class="flex flex-col gap-2" id="lc-prefs">
           <div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Care &amp; cycle</span><button class="lc-sw" data-ncat="care" type="button" aria-label="Care alerts"></button></div>

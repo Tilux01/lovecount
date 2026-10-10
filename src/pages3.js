@@ -47,7 +47,7 @@ export const MORE_JS = `
   function save(){ if(window.LC&&window.LC.save) window.LC.save(); }
   function renderAll(){ if(window.LC&&window.LC.renderAll) window.LC.renderAll(); }
   function native(a,p){ if(window.LC&&window.LC.native) window.LC.native(a,p); }
-  function partner(){ return D.partner||{name:'Esther',birthdayMonth:10,birthdayDay:7,birthYear:2007}; }
+  function partner(){ return D.partner||{name:'Esther',birthdayMonth:10,birthdayDay:19,birthYear:2007}; }
   function role(){ var s=st(); return (s&&s.myRole)||((D.me&&D.me.name)||'Israel'); }
   function owner(){ if(role()==='Esther') return 'Your'; return partner().name+String.fromCharCode(8217)+'s'; }
   function me(){ return (D.me&&D.me.name)||'Israel'; }

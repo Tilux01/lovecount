@@ -62,3 +62,5 @@ lovecount.apk
 
 # release binaries (published via GitHub Releases, never committed)
 LoveCount-*.apk
+
+lovecount-app/

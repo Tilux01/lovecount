@@ -17,7 +17,7 @@ export const DATA = {
   partner: {
     name: "Esther",
     birthdayMonth: 10,
-    birthdayDay: 7,
+    birthdayDay: 19,
     birthYear: 2007,
   },
 
@@ -42,7 +42,7 @@ export const DATA = {
 
   seed: {
     events: [
-      { id: "e1", title: "Esther's Birthday", date: "10-07", kind: "birthday" },
+      { id: "e1", title: "Esther's Birthday", date: "10-19", kind: "birthday" },
       { id: "e2", title: "Our Anniversary", date: "08-10", kind: "anniversary" },
     ],
     notes: [

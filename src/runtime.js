@@ -46,7 +46,7 @@ export const RUNTIME_JS = [
 "  }",
 "  function load(){",
 "    var raw=null; try{ raw=localStorage.getItem(KEY); }catch(e){}",
-"    if(raw){ try{ var o=JSON.parse(raw); var d=defaults(); for(var k in d){ if(!(k in o)) o[k]=d[k]; } if(!o.settings) o.settings={}; for(var sk in d.settings){ if(!(sk in o.settings)) o.settings[sk]=d.settings[sk]; } if(!o.settings.notifCats) o.settings.notifCats=d.settings.notifCats; else { for(var nk in d.settings.notifCats){ if(!(nk in o.settings.notifCats)) o.settings.notifCats[nk]=d.settings.notifCats[nk]; } } if(!o.care) o.care=d.care; else { for(var ck in d.care){ if(!(ck in o.care)) o.care[ck]=d.care[ck]; } } return o; }catch(e){} }",
+"    if(raw){ try{ var o=JSON.parse(raw); var d=defaults(); for(var k in d){ if(!(k in o)) o[k]=d[k]; } if(!o.settings) o.settings={}; for(var sk in d.settings){ if(!(sk in o.settings)) o.settings[sk]=d.settings[sk]; } if(!o.settings.notifCats) o.settings.notifCats=d.settings.notifCats; else { for(var nk in d.settings.notifCats){ if(!(nk in o.settings.notifCats)) o.settings.notifCats[nk]=d.settings.notifCats[nk]; } } if(!o.care) o.care=d.care; else { for(var ck in d.care){ if(!(ck in o.care)) o.care[ck]=d.care[ck]; } } if(o.events&&o.events.length){for(var ei=0;ei<o.events.length;ei++){var ev=o.events[ei];if(ev&&ev.kind==='birthday'&&ev.date==='10-07'){ev.date='10-19';}}} return o; }catch(e){} }",
 "    var s = defaults();",
 "    // Seed REAL milestones from data.js. No invented placeholder content.",
 "    (D.seed && D.seed.events || []).forEach(function(e, i){ s.events.push({ id: e.id || uid('e'), title: e.title, date: e.date, kind: e.kind||'celebration', note: e.note||'', created: Date.now()+i }); });",
