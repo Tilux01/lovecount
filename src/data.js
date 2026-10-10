@@ -22,7 +22,7 @@ export const DATA = {
   },
 
   relationship: {
-    startISO: "2025-08-10", // Anniversary: 10 August 2025
+    startISO: "2025-08-19", // Anniversary: 19 August 2025
     label: "Anniversary",
   },
   firebase: {
@@ -43,7 +43,7 @@ export const DATA = {
   seed: {
     events: [
       { id: "e1", title: "Esther's Birthday", date: "10-19", kind: "birthday" },
-      { id: "e2", title: "Our Anniversary", date: "08-10", kind: "anniversary" },
+      { id: "e2", title: "Our Anniversary", date: "08-19", kind: "anniversary" },
     ],
     notes: [
       { id: "n1", from: "Israel", body: "You make every ordinary day feel like a celebration.", mood: "Sweet", hearts: 24 },
