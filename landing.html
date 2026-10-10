@@ -524,7 +524,7 @@ Download the Android app
 <button data-lbclose aria-label="Close">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
 </button>
-<div class="stagebox"><img id="lbImg" src="" alt=""></div>
+<div class="stagebox"><img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></div>
 </div>
 
 <script>
@@ -615,10 +615,11 @@ function wireApk(url){
   var all=document.querySelectorAll('[data-apk]');
   for(var i=0;i<all.length;i++){all[i].href=url;}
 }
-if(location.protocol==='http:'||location.protocol==='https:'){
+var LOCAL_PROBE=/^(localhost|127\.0\.0\.1|\[::1\]|0\.0\.0\.0|192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.)/.test(location.hostname);
+if(LOCAL_PROBE){
   var head=new XMLHttpRequest();
   head.open('HEAD',LOCAL,true);
-  head.onload=function(){if(head.status>=200&&head.status<400){wireApk(LOCAL);}};
+  head.onload=function(){wireApk(head.status>=200&&head.status<400?LOCAL:REMOTE);};
   head.onerror=function(){wireApk(REMOTE);};
   head.send();
 }else{

@@ -22,7 +22,8 @@
     "build:html": "node generate_html.js",
     "verify": "node verify.js",
     "test": "node verify.js",
-    "build:site": "node build_site.js"
+    "build:site": "node build_site.js",
+    "deploy": "SITE_URL=https://lovecount-six.vercel.app node build_site.js && cd site && vercel deploy --prod --yes --project lovecount"
   },
   "private": true,
   "devDependencies": {
